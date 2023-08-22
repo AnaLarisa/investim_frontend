@@ -1,0 +1,26 @@
+.menu {
+  background-color: #2b6777;
+  color: white;
+  width: 250px; /* Adjust as needed */
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.menu-item {
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.menu-item.active {
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 5px;
+}

@@ -1,0 +1,30 @@
+<div class="menu">
+  <div class="menu-item" (click)="navigateTo('dashboard')" [class.active]="selectedOption === 'dashboard'">
+    <mat-icon class="menu-icon">home</mat-icon>
+    Dashboard
+  </div>
+  <div class="menu-item" (click)="navigateTo('calendar')" [class.active]="selectedOption === 'calendar'">
+    <mat-icon class="menu-icon">calendar_today</mat-icon>
+    Calendar
+  </div>
+  <div class="menu-item" (click)="navigateTo('newspaper')" [class.active]="selectedOption === 'newspaper'">
+    <mat-icon class="menu-icon">article</mat-icon>
+    Newspaper
+  </div>
+  <div class="menu-item" (click)="navigateTo('manager')" [class.active]="selectedOption === 'manager'">
+    <mat-icon class="menu-icon">people</mat-icon>
+    From manager
+  </div>
+  <div class="menu-item" (click)="navigateTo('goals')" [class.active]="selectedOption === 'goals'">
+    <mat-icon class="menu-icon">access_time</mat-icon>
+    My goals
+  </div>
+  <div class="menu-item" (click)="navigateTo('chat')" [class.active]="selectedOption === 'chat'">
+    <mat-icon class="menu-icon">chat</mat-icon>
+    Team Chat
+  </div>
+  <div class="menu-item" style="margin-top: 20px;" (click)="logout()">
+    <mat-icon class="menu-icon">exit_to_app</mat-icon>
+    Logout
+  </div>
+</div>
