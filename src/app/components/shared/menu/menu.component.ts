@@ -23,6 +23,7 @@ export class MenuComponent {
   }
 
   logout(): void {
+    this.selectedOption = '';
     // Implement your logout logic here
   }
 }

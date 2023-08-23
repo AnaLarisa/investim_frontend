@@ -1,2 +1,4 @@
-<app-menu [selectedOption]="selectedOption"></app-menu>
+<div *ngIf="selectedOption !== ''">
+  <app-menu [selectedOption]="selectedOption"></app-menu>
+</div>
 <router-outlet></router-outlet>

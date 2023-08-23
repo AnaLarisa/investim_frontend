@@ -2,14 +2,14 @@
 <div class="container">
   <div class="left-half">
     <div class="space100" ></div>
-    <form>
-      <input type="text" class="input" id="firstname" placeholder="First Name*">
-      <input type="text" class="input" id="lastname" placeholder="Last Name*">
-      <input type="text" class="input" id="email" placeholder="E-mail*">
-      <input type="text" class="input" id="username" placeholder="Choose your username*">
-      <input type="text" class="input" id="managerUsername" placeholder="Your manager's username*">
+    <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+      <input type="text" class="input" id="firstname" placeholder="First Name*" formControlName="firstName">
+      <input type="text" class="input" id="lastname" placeholder="Last Name*" formControlName="lastName">
+      <input type="text" class="input" id="email" placeholder="E-mail*" formControlName="email">
+      <input type="text" class="input" id="username" placeholder="Choose your username*" formControlName="username">
+      <input type="text" class="input" id="managerUsername" placeholder="Your manager's username*" formControlName="manager">
       <div class="space30" ></div>
-      <button class="enter-btn">Ask for account</button>
+      <button type="submit" class="enter-btn">Ask for account</button>
     </form>
 
     <button class="back-btn" (click)="goToLogin()">Back to Log In</button>

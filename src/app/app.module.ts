@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from "@angular/material/card";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
 import { CalendarPageComponent } from './modules/calendar-module/calendar-page/calendar-page.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     FullCalendarModule,

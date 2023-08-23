@@ -1,13 +1,13 @@
 <div style="background-color: white">
   <div class="container">
     <div class="left-half">
-      <img src="../../../../assets/logo.png" alt="Image" class="image img-1">
+      <img ngSrc="../../../../assets/logo.png" alt="Image" class="image img-1" height="405" width="560">
       <div class="space130" ></div>
-      <form>
-        <input type="text" class="input" id="username" placeholder="Username">
-        <input type="password" class="input" id="password" placeholder="Password">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogIn()">
+        <input type="text" class="input" id="username" placeholder="Username" formControlName="username">
+        <input type="password" class="input" id="password" placeholder="Password" formControlName="password">
         <div class="space30" ></div>
-        <button class="enter-btn">Login</button>
+        <button type="submit" class="enter-btn">Login</button>
       </form>
 
       <a href="#" class="forgot-password">Forgot your password?</a>
