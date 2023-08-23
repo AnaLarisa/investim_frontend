@@ -25,6 +25,6 @@ export class MenuComponent {
   logout(): void {
     // Implement your logout logic here
     sessionStorage.setItem("authToken", "");
-    this.router.navigate(['/login']).then()
+    this.router.navigate(['login']).then()
   }
 }

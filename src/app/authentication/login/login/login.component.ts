@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     const token = 'DummyToken';
     sessionStorage.setItem('authToken', token);
     console.log(this.loginForm.value);
-    this.router.navigate(['/']).then();
+    this.router.navigate(['/dashboard']).then();
   }
 
   goToSignUp() {

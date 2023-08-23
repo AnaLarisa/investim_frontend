@@ -17,12 +17,15 @@ import { LoginModule } from './authentication/login/login.module';
 import { SignUpModule } from './authentication/sign-up/sign-up.module';
 import { CalendarModule } from './modules/calendar-module/calendar-module.module';
 import { MenuComponent } from './components/shared/menu/menu.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
   { path: 'signup', loadChildren: () => import('./authentication/sign-up/sign-up.module').then(m => m.SignUpModule) },
-  { path: '',  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
+  {path : '' , redirectTo : 'dashboard' , pathMatch : 'full'},
+  { path: 'dashboard',  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
   { path: 'calendar',  loadChildren: () => import('./modules/calendar-module/calendar-module.module').then(m => m.CalendarModule)},
+  { path: '**', redirectTo: 'dashboard'},
 ];
 
 @NgModule({
@@ -38,6 +41,7 @@ const routes: Routes = [
     FullCalendarModule,
     FlexLayoutModule,
     MatToolbarModule,
+    MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,
