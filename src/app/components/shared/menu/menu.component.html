@@ -1,29 +1,33 @@
 <div class="menu">
-  <div class="menu-item" (click)="navigateTo('dashboard')" [class.active]="selectedOption === 'dashboard'">
+  <div (click)="navigateTo('user')" [class.active]="selectedOption === 'user'" class="menu-item">
+    <mat-icon class="menu-icon">person</mat-icon>
+    Username
+  </div>
+  <div (click)="navigateTo('dashboard')" [class.active]="selectedOption === 'dashboard'" class="menu-item">
     <mat-icon class="menu-icon">home</mat-icon>
     Dashboard
   </div>
-  <div class="menu-item" (click)="navigateTo('calendar')" [class.active]="selectedOption === 'calendar'">
+  <div (click)="navigateTo('calendar')" [class.active]="selectedOption === 'calendar'" class="menu-item">
     <mat-icon class="menu-icon">calendar_today</mat-icon>
     Calendar
   </div>
-  <div class="menu-item" (click)="navigateTo('newspaper')" [class.active]="selectedOption === 'newspaper'">
+  <div (click)="navigateTo('newspaper')" [class.active]="selectedOption === 'newspaper'" class="menu-item">
     <mat-icon class="menu-icon">article</mat-icon>
     Newspaper
   </div>
-  <div class="menu-item" (click)="navigateTo('manager')" [class.active]="selectedOption === 'manager'">
+  <div (click)="navigateTo('manager')" [class.active]="selectedOption === 'manager'" class="menu-item">
     <mat-icon class="menu-icon">people</mat-icon>
     From manager
   </div>
-  <div class="menu-item" (click)="navigateTo('goals')" [class.active]="selectedOption === 'goals'">
+  <div (click)="navigateTo('goals')" [class.active]="selectedOption === 'goals'" class="menu-item">
     <mat-icon class="menu-icon">access_time</mat-icon>
     My goals
   </div>
-  <div class="menu-item" (click)="navigateTo('chat')" [class.active]="selectedOption === 'chat'">
+  <div (click)="navigateTo('chat')" [class.active]="selectedOption === 'chat'" class="menu-item">
     <mat-icon class="menu-icon">chat</mat-icon>
     Team Chat
   </div>
-  <div class="menu-item" style="margin-top: 20px;" (click)="logout()">
+  <div (click)="logout()" class="menu-item" style="margin-top: 20px;">
     <mat-icon class="menu-icon">exit_to_app</mat-icon>
     Logout
   </div>
