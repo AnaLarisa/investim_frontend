@@ -19,11 +19,12 @@ export class MenuComponent {
     this.selectedOption = option;
 
     // Navigate to the selected route
-    this.router.navigate([option]);
+    this.router.navigate([option]).then();
   }
 
   logout(): void {
-    this.selectedOption = '';
     // Implement your logout logic here
+    sessionStorage.setItem("authToken", "");
+    this.router.navigate(['/login']).then()
   }
 }

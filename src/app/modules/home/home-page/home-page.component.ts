@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-home-page',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+
+  constructor(private appComponent: AppComponent) {
+    this.appComponent.selectedOption = 'dashboard';
+  }
 
 }

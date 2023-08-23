@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private appComponent: AppComponent
+    ) {
+    this.appComponent.selectedOption = ''
+  }
 
   loginForm = new FormGroup({
     username: new FormControl(''),

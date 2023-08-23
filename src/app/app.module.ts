@@ -13,35 +13,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from "@angular/material/card";
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HomePageComponent } from './modules/home/home-page/home-page.component';
-import { CalendarPageComponent } from './modules/calendar-module/calendar-page/calendar-page.component';
 import { LoginModule } from './authentication/login/login.module';
 import { SignUpModule } from './authentication/sign-up/sign-up.module';
 import { CalendarModule } from './modules/calendar-module/calendar-module.module';
 import { MenuComponent } from './components/shared/menu/menu.component';
-import { LayoutComponent } from './layout/layout.component'; // Import LayoutComponent
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
   { path: 'signup', loadChildren: () => import('./authentication/sign-up/sign-up.module').then(m => m.SignUpModule) },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: '',
-    component: LayoutComponent, // Use LayoutComponent as the layout
-    children: [
-      { path: 'home', component: HomePageComponent },
-      { path: 'calendar', component: CalendarPageComponent },
-      // Add more routes that should have the layout here
-    ],
-  },
+  { path: '',  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
+  { path: 'calendar',  loadChildren: () => import('./modules/calendar-module/calendar-module.module').then(m => m.CalendarModule)},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
     MenuComponent,
-    LayoutComponent, // Declare LayoutComponent here
   ],
   imports: [
     BrowserModule,
@@ -59,7 +46,7 @@ const routes: Routes = [
     SignUpModule,
     CalendarModule,
   ],
-  providers:[],
+  providers:[AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
