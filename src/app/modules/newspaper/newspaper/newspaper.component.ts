@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-newspaper',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./newspaper.component.css']
 })
 export class NewspaperComponent {
-
+  constructor(private appComponent: AppComponent) {
+    this.appComponent.selectedOption = 'newspaper';
+  }
 }

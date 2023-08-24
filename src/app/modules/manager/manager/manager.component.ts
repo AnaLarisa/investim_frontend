@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-manager',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ManagerComponent {
 
+  constructor(private appComponent: AppComponent) {
+    this.appComponent.selectedOption = 'manager';
+  }
 }

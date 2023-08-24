@@ -18,6 +18,11 @@ import { SignUpModule } from './authentication/sign-up/sign-up.module';
 import { CalendarModule } from './modules/calendar-module/calendar-module.module';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {UserModule} from "./modules/user/user.module";
+import {NewspaperModule} from "./modules/newspaper/newspaper.module";
+import {ManagerModule} from "./modules/manager/manager.module";
+import {GoalsModule} from "./modules/goals/goals.module";
+import {ChatModule} from "./modules/chat/chat.module";
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -25,6 +30,11 @@ const routes: Routes = [
   {path : '' , redirectTo : 'dashboard' , pathMatch : 'full'},
   { path: 'dashboard',  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
   { path: 'calendar',  loadChildren: () => import('./modules/calendar-module/calendar-module.module').then(m => m.CalendarModule)},
+  { path: 'user',  loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)},
+  { path: 'newspaper',  loadChildren: () => import('./modules/newspaper/newspaper.module').then(m => m.NewspaperModule)},
+  { path: 'manager',  loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule)},
+  { path: 'chat',  loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)},
+  { path: 'goals',  loadChildren: () => import('./modules/goals/goals.module').then(m => m.GoalsModule)},
   { path: '**', redirectTo: 'dashboard'},
 ];
 
@@ -49,6 +59,11 @@ const routes: Routes = [
     LoginModule,
     SignUpModule,
     CalendarModule,
+    UserModule,
+    NewspaperModule,
+    ManagerModule,
+    GoalsModule,
+    ChatModule,
   ],
   providers:[AppComponent],
   bootstrap: [AppComponent]

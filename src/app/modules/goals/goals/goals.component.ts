@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-goals',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class GoalsComponent {
 
+  constructor(private appComponent: AppComponent) {
+    this.appComponent.selectedOption = 'goals';
+  }
 }

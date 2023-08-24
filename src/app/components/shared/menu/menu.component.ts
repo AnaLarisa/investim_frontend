@@ -10,14 +10,7 @@ export class MenuComponent {
   @Input() selectedOption!: string;
 
   constructor(private router: Router) { }
-
-  changeActiveOption(option: string) {
-    this.selectedOption = option;
-  }
   navigateTo(option: string): void {
-    // Update the selectedOption when a menu item is clicked
-    this.selectedOption = option;
-
     // Navigate to the selected route
     this.router.navigate([option]).then();
   }
