@@ -6,12 +6,16 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [CalendarComponent, CalendarPageComponent],
   imports: [
     CommonModule,
     FullCalendarModule,
+    RouterModule.forChild([
+      {path: 'calendar', component: CalendarPageComponent}
+    ]),
     MatCardModule, // Add MatCardModule here
     MatButtonModule, // Add MatButtonModule here
   ],

@@ -1,6 +1,6 @@
 <div class="menu">
   <div (click)="navigateTo('user')" [class.active]="selectedOption === 'user'" class="menu-item">
-    <mat-icon class="menu-icon">person</mat-icon>
+    <mat-icon class="menu-icon" id="user-icon">person</mat-icon>
     Username
   </div>
   <div (click)="navigateTo('dashboard')" [class.active]="selectedOption === 'dashboard'" class="menu-item">
@@ -27,8 +27,7 @@
     <mat-icon class="menu-icon">chat</mat-icon>
     Team Chat
   </div>
-  <div class="space350" ></div>
-  <div (click)="logout()" class="menu-item" style="margin-top: 20px;">
+  <div (click)="logout()" class="menu-item">
     <mat-icon class="menu-icon">exit_to_app</mat-icon>
     Logout
   </div>

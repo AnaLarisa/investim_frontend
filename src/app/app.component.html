@@ -1,2 +1,9 @@
-<app-menu [selectedOption]="selectedOption"></app-menu>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container" *ngIf="selectedOption !== ''">
+  <mat-sidenav mode="side" opened>
+    <app-menu [selectedOption]="selectedOption"></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet *ngIf="selectedOption === ''"></router-outlet>

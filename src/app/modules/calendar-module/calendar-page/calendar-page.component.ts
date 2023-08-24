@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CalendarComponent} from '../calendar/calendar.component';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-calendar-page',
@@ -9,5 +9,7 @@ import { CalendarComponent} from '../calendar/calendar.component';
 
 
 export class CalendarPageComponent {
-
+  constructor(private appComponent: AppComponent) {
+    this.appComponent.selectedOption = 'calendar';
+  }
 }
