@@ -45,3 +45,7 @@
   align-items: center;
   border-radius: 30%;
 }
+
+::ng-deep .mat-drawer {
+  background-color: transparent;
+}

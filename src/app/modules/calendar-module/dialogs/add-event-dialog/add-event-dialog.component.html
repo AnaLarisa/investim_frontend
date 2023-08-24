@@ -1,0 +1,57 @@
+<section class="dialog-content">
+  <h1>Add event</h1>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input type="text" formControlName="title" matInput placeholder="Meeting" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+    <mat-label>Date</mat-label>
+    <input
+      [matDatepicker]="pickerDate"
+      [placeholder]="'dd/mm/yy'"
+      formControlName="date"
+      matInput
+    />
+    <mat-datepicker-toggle [for]="pickerDate" matSuffix>
+      <mat-icon>event</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #pickerDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+    <mat-label>Time</mat-label>
+      <input matInput [ngxTimepicker]="time" formControlName="time">
+      <ngx-material-timepicker #time ></ngx-material-timepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Duration (minutes)</mat-label>
+      <input formControlName="duration" matInput type="number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <input formControlName="location" matInput type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select formControlName="type" placeholder="Type">
+        <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Meeting Notes</mat-label>
+      <input formControlName="notes" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Client Name</mat-label>
+      <input formControlName="client" matInput type="text" />
+    </mat-form-field>
+  </form>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="save()">Save</button>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+</section>
