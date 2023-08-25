@@ -23,6 +23,9 @@ import {NewspaperModule} from "./modules/newspaper/newspaper.module";
 import {ManagerModule} from "./modules/manager/manager.module";
 import {GoalsModule} from "./modules/goals/goals.module";
 import {ChatModule} from "./modules/chat/chat.module";
+import {NewsComponent} from "./components/shared/news/news.component";
+import {NgOptimizedImage} from "@angular/common";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -42,6 +45,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MenuComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,8 @@ const routes: Routes = [
     ManagerModule,
     GoalsModule,
     ChatModule,
+    NgOptimizedImage,
+    MatGridListModule,
   ],
   providers:[AppComponent],
   bootstrap: [AppComponent]

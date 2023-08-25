@@ -1,9 +1,18 @@
-<mat-sidenav-container class="example-container" *ngIf="selectedOption !== ''">
+<mat-sidenav-container class="app-container" *ngIf="selectedOption !== ''">
   <mat-sidenav mode="side" opened>
     <app-menu [selectedOption]="selectedOption"></app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <mat-grid-list cols="6" rowHeight="33.33%">
+      <mat-grid-tile  [colspan]="4" [rowspan]="3">
+        <div id="content-tile">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <app-news style="height: 100%;"></app-news>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet *ngIf="selectedOption === ''"></router-outlet>
