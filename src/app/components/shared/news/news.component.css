@@ -1,0 +1,43 @@
+.news {
+  font-size: 18px;
+  background-color: transparent;
+  margin-right: 60px;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+#news-title {
+  margin: 0 10px;
+}
+
+img {
+  margin: 5px
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.menu-icon {
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+}
+
+#read-more-button {
+  text-align: center;
+  color: white;
+  padding: 15px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  background-color: #52AB98;
+}
