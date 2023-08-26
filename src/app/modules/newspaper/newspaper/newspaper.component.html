@@ -1,1 +1,17 @@
-<p>newspaper works!</p>
+<div id="container">
+  <h2>News</h2>
+  <mat-divider></mat-divider>
+  <div id="news-list-container">
+    <mat-card id="news-item" *ngFor="let article of articles">
+      <mat-card-content>
+        <a class="nostyle" [href]="article.url">
+          <img [src]="article.imageUrl" alt="no image provided"/>
+          <div id="news-item-text">
+            <div id="news-item-title">{{article.title}}</div>
+            <div id="news-item-author">{{article.author}}</div>
+          </div>
+        </a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

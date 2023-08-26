@@ -21,11 +21,12 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {UserModule} from "./modules/user/user.module";
 import {NewspaperModule} from "./modules/newspaper/newspaper.module";
 import {ManagerModule} from "./modules/manager/manager.module";
-import {GoalsModule} from "./modules/goals/goals.module";
 import {ChatModule} from "./modules/chat/chat.module";
 import {NewsComponent} from "./components/shared/news/news.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { GoalsComponent } from './components/shared/goals/goals.component';
+import { FromManagerComponent } from './components/shared/from-manager/from-manager.component';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -37,7 +38,6 @@ const routes: Routes = [
   { path: 'newspaper',  loadChildren: () => import('./modules/newspaper/newspaper.module').then(m => m.NewspaperModule)},
   { path: 'manager',  loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule)},
   { path: 'chat',  loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)},
-  { path: 'goals',  loadChildren: () => import('./modules/goals/goals.module').then(m => m.GoalsModule)},
   { path: '**', redirectTo: 'dashboard'},
 ];
 
@@ -46,6 +46,8 @@ const routes: Routes = [
     AppComponent,
     MenuComponent,
     NewsComponent,
+    GoalsComponent,
+    FromManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,6 @@ const routes: Routes = [
     UserModule,
     NewspaperModule,
     ManagerModule,
-    GoalsModule,
     ChatModule,
     NgOptimizedImage,
     MatGridListModule,

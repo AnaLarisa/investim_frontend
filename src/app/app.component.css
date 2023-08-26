@@ -27,6 +27,7 @@ app-menu {
   margin: 30px;
   border-radius: 20px;
   padding: 10px;
+  overflow: hidden;
 }
 
 

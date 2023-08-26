@@ -1,0 +1,44 @@
+#news-item:hover {
+  background-color: #e7e7e7;
+}
+
+a {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  height:100px;
+  width: 100px;
+}
+
+#news-item {
+  margin: 5px;
+}
+
+a.nostyle:link, a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+
+#news-item-text {
+  display:flex;
+  flex-direction: column;
+  margin-left: 2vh;
+}
+
+#news-item-title {
+  color: black;
+  font-size: 1.2rem;
+}
+
+#news-item-author {
+  color: gray;
+  margin-top: 5px;
+}
+
+#news-list-container {
+  overflow:hidden; overflow-y:scroll;
+  max-height: 700px;
+}
