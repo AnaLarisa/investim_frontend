@@ -25,7 +25,6 @@ import {ChatModule} from "./modules/chat/chat.module";
 import {NewsComponent} from "./components/shared/news/news.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { GoalsComponent } from './components/shared/goals/goals.component';
 import { FromManagerComponent } from './components/shared/from-manager/from-manager.component';
 
 const routes: Routes = [
@@ -46,7 +45,6 @@ const routes: Routes = [
     AppComponent,
     MenuComponent,
     NewsComponent,
-    GoalsComponent,
     FromManagerComponent,
   ],
   imports: [

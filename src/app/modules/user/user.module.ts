@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import {RouterModule} from "@angular/router";
 import {MatTabsModule} from "@angular/material/tabs";
-import {PersonalStatisticsModule} from "../../components/shared/personal-statistics/personal-statistics.module";
-import {AccountInfoModule} from "../../components/shared/account-info/account-info.module";
+import {PersonalStatisticsComponent} from "./personal-statistics/personal-statistics.component";
+import {AccountInfoComponent} from "./account-info/account-info.component";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
 @NgModule({
   declarations: [
     UserComponent,
+    PersonalStatisticsComponent,
+    AccountInfoComponent
   ],
   imports: [
     CommonModule,
@@ -18,8 +26,12 @@ import {AccountInfoModule} from "../../components/shared/account-info/account-in
       {path: 'user', component: UserComponent}
     ]),
     MatTabsModule,
-    PersonalStatisticsModule,
-    AccountInfoModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatButtonModule,
   ]
 })
 export class UserModule { }

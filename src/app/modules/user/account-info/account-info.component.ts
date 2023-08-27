@@ -1,7 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DateSelectArg} from "@fullcalendar/core";
 
 @Component({
   selector: 'app-account-info',
@@ -25,10 +23,6 @@ export class AccountInfoComponent {
     city: "Mehrab",
     manager_username: "Luca",
   };
-  constructor(
-    private readonly _formBuilder: FormBuilder,
-  ) {}
-
   readonly form = this._formBuilder.group({
     // @ts-ignore
     first_name: [this.user.first_name, Validators.required],
@@ -47,6 +41,11 @@ export class AccountInfoComponent {
     // @ts-ignore
     manager_username: ["", Validators.required],
   });
+
+  constructor(
+    private readonly _formBuilder: FormBuilder,
+  ) {}
+
   save() {
     console.log(this.form.value)
   }
