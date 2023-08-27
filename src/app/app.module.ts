@@ -72,7 +72,7 @@ const routes: Routes = [
     NgOptimizedImage,
     MatGridListModule,
   ],
-  providers:[AppComponent],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
