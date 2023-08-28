@@ -1,0 +1,44 @@
+<mat-grid-list cols="1" rowHeight="100px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let request of requests">
+    <div class="css-grid">
+      <div class="css-grid-tile item1">
+        <div>
+          First Name
+        </div>
+        <div>
+          Last Name
+        </div>
+        <div>
+          Email
+        </div>
+        <div>
+          Username
+        </div>
+      </div>
+      <div class="css-grid-tile item2">
+        <div>
+          {{request.first_name}}
+        </div>
+        <div>
+          {{request.last_name}}
+        </div>
+        <div>
+          {{request.email}}
+        </div>
+        <div>
+          {{request.username}}
+        </div>
+      </div>
+      <div class="css-grid-tile item3">
+        <div>
+          <button mat-raised-button color="primary" (click)="acceptRequest(request)">Accept</button>
+        </div>
+      </div>
+      <div class="css-grid-tile item4">
+        <div>
+          <button mat-raised-button color="warn" (click)="rejectRequest(request)">Reject</button>
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

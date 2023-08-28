@@ -1,0 +1,51 @@
+.team-information {
+  font-size: 18px;
+  background-color: transparent;
+  margin-right: 60px;
+  height: 100%;
+}
+
+.card {
+  border-radius: 15px;
+  height: 100%;
+  display: flex;
+}
+
+#news-title {
+  margin: 0 10px;
+}
+
+.menu-icon {
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+}
+
+#read-more-button {
+  margin-left: auto;
+  text-align: center;
+  color: white;
+  padding: 15px;
+  height: 1rem;
+  border-radius: 20px;
+  background-color: #52AB98;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.member {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}

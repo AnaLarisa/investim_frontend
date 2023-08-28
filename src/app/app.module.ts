@@ -27,6 +27,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { FromManagerComponent } from './components/shared/from-manager/from-manager.component';
 import { ProgressComponent } from './modules/progress/progress.component';
+import { TeamInformationComponent } from './components/shared/team-information/team-information.component';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -47,6 +48,7 @@ const routes: Routes = [
         MenuComponent,
         NewsComponent,
         FromManagerComponent,
+        TeamInformationComponent,
     ],
     imports: [
         BrowserModule,

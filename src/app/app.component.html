@@ -10,8 +10,11 @@
       <div id="news-tile" *ngIf="selectedOption !== 'newspaper'">
         <app-news style="height: 100%;"></app-news>
       </div>
-      <div id="from-manager-tile" [class.isFirst]="selectedOption === 'newspaper'" *ngIf="selectedOption !== 'manager'">
+      <div id="from-manager-tile" *ngIf="selectedOption !== 'manager' && selectedOption !== 'user'">
         <app-from-manager style="height: 100%;"></app-from-manager>
+      </div>
+      <div id="team-information-tile"  *ngIf="selectedOption === 'user'">
+        <app-team-information style="height: 100%;"></app-team-information>
       </div>
     </div>
   </mat-sidenav-content>

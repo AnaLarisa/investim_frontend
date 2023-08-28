@@ -1,0 +1,20 @@
+<div class="team-information">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="section-title">
+          <mat-icon class="menu-icon">groups</mat-icon>
+          Team information
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="container">
+        <div class="member" *ngFor="let consultant of consultants">
+          <p id="news-title">{{consultant.name}}</p>
+          <button (click)="openProgress(consultant.name)" mat-button id="read-more-button">INSPECT PROGRESS</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
