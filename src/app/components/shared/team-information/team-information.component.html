@@ -10,10 +10,10 @@
     </mat-card-header>
     <mat-card-content>
       <div class="container">
-        <div class="member" *ngFor="let consultant of consultants">
+        <div *ngFor="let consultant of consultants" class="member">
           <div id="consultant-name">{{consultant.name}}</div>
-          <button (click)="openProgress(consultant.name)" mat-button id="read-more-button">INSPECT PROGRESS</button>
-          <button (click)="deleteUser(consultant.name)" mat-button id="delete-user-button">DELETE USER</button>
+          <button (click)="openProgress(consultant.name)" class="read-more-button" mat-button>INSPECT PROGRESS</button>
+          <button (click)="deleteUser(consultant.name)" class="delete-user-button" mat-button>DELETE USER</button>
         </div>
       </div>
     </mat-card-content>

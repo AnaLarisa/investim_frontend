@@ -12,9 +12,9 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
-import {AppModule} from "../../app.module";
 import {ProgressModule} from "../progress/progress.module";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {CdkVirtualForOf, ScrollingModule} from "@angular/cdk/scrolling";
 
 
 
@@ -39,6 +39,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatButtonModule,
     ProgressModule,
     MatGridListModule,
+    ScrollingModule,
+    CdkVirtualForOf,
   ]
 })
 export class UserModule { }

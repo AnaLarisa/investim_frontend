@@ -1,39 +1,46 @@
+<cdk-virtual-scroll-viewport itemSize="300">
 <section class="dialog-content">
   <h1>Add event</h1>
   <form [formGroup]="form">
-    <mat-form-field appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input formControlName="first_name" matInput type="text"/>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input formControlName="last_name" matInput type="text"/>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
+    <div class="row-2">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="first_name" matInput type="text"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="slide">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="last_name" matInput type="text"/>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="row">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput type="text"/>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="row">
       <mat-label>Address</mat-label>
       <input formControlName="address" matInput type="text"/>
     </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Phone Number</mat-label>
-      <input formControlName="phone" matInput type="text"/>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Username</mat-label>
-      <input formControlName="username" matInput type="text"/>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>City</mat-label>
-      <input formControlName="city" matInput type="text"/>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-select formControlName="manager_username" placeholder="Manager">
-        <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="row-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input formControlName="phone" matInput type="text"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="slide">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput type="text"/>
+      </mat-form-field>
+    </div>
+    <div class="row-2">
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input formControlName="city" matInput type="text"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="slide">
+        <mat-select formControlName="manager_username" placeholder="Manager">
+          <mat-option *cdkVirtualFor="let option of options" [value]="option">{{option}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
   <mat-dialog-actions>
     <button (click)="save()" mat-button>Save</button>
@@ -58,3 +65,4 @@
     </mat-dialog-actions>
   </form>
 </section>
+</cdk-virtual-scroll-viewport>

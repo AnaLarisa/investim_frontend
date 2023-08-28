@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #e6e6e6;}
+
+.timepicker-backdrop-overlay{
+  z-index: 1001 !important;
+}
+
+.timepicker-overlay{
+  z-index: 1001 !important;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  --mdc-tab-indicator-active-indicator-color: #2b6777 !important;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38) !important;
+  --mat-tab-header-pagination-icon-color: #000 !important;
+  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-active-label-text-color: #2b6777 !important;
+  --mat-tab-header-active-ripple-color: #2b6777 !important;
+  --mat-tab-header-inactive-ripple-color: #2b6777 !important;
+  --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-active-focus-label-text-color: #2b6777 !important;
+  --mat-tab-header-active-hover-label-text-color: #2b6777 !important;
+  --mat-tab-header-active-focus-indicator-color: #2b6777 !important;
+  --mat-tab-header-active-hover-indicator-color: #2b6777 !important;
+}
+
+.mdc-text-field--outlined {
+  border-radius: 100px !important;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  border-radius: 28px 0 0 28px !important;
+  min-width: 28px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 28px 28px 0 !important;
+}
+

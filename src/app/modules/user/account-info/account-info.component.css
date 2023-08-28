@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+::ng-deep .row-2 .mat-mdc-text-field-wrapper {
+  width: 150%;
+}
+
+.slide {
+  transform: translateX(-50%);
+}
+
+cdk-virtual-scroll-viewport {
+  display: contents;
+}
