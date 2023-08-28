@@ -1,0 +1,37 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="title">
+        <mat-icon class="menu-icon">edit</mat-icon>
+        Add or edit an existing item
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="content">
+      <div class="title-title">
+        Title:
+      </div>
+      <div class="section-title">
+        <textarea rows="4" [ngModel]="title" (ngModelChange)="handleChange('title', $event)" matInput placeholder="Title"></textarea>
+      </div>
+      <div class="title-content">
+        Content:
+      </div>
+      <div class="section-content">
+        <textarea rows="4" [ngModel]="content" (ngModelChange)="handleChange('content', $event)" matInput placeholder="Content"></textarea>
+      </div>
+      <div class="title-observations">
+        Observations:
+      </div>
+      <div class="section-observations">
+        <textarea rows="6" [ngModel]="observations" (ngModelChange)="handleChange('observations', $event)" matInput placeholder="Observations"></textarea>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="addNew()">
+      <mat-icon class="new-icon">add_circle_outline</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,41 @@
+.card {
+  border-radius: 15px;
+  height: 100%;
+  display: flex;
+  background-color: #fff;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  font-size: 1.3rem;
+}
+
+.menu-icon {
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.section-content-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.section-content-observations {
+  max-height: 100px;
+  overflow-y: auto;
+}

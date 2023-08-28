@@ -1,4 +1,20 @@
 <div id="container">
-  <h2>From your manager, {{manager.name}}</h2>
+  <div id="title">From your manager, {{manager.name}}</div>
   <mat-divider></mat-divider>
+  <div class="searchbar">
+    <mat-icon id="search-icon">search</mat-icon>
+    <input id="search-input" [ngModel]="searchInput" (ngModelChange)="onChange($event)">
+  </div>
+  <div id="note-details-and-edit-container">
+    <div id="note-edit" *ngIf="role === 'manager'"><app-note-edit [note]="selectedNote ? matchingSearch[selectedNote] : null"></app-note-edit></div>
+    <div id="note-details" *ngIf="role !== 'manager' && selectedNote !== null"><app-note-details [note]="matchingSearch[selectedNote]"></app-note-details></div>
+  </div>
+  <div class="container">
+    <button class="note" *ngFor="let note of matchingSearch; let i = index" (click)="selectNote(i)" [class.active]="selectedNote === i">
+      <div>
+        {{note.title}}
+      </div>
+      <mat-icon id="delete-icon" (click)="deleteNote($event, note)">delete</mat-icon>
+    </button>
+  </div>
 </div>

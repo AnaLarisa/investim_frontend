@@ -1,0 +1,68 @@
+.card {
+  border-radius: 15px;
+  height: 100%;
+  display: flex;
+  background-color: #52AB98;
+  color: white;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-size: 1.3rem;
+}
+
+.menu-icon {
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+textarea {
+  border: 0;
+  outline: 0;
+  resize: none;
+  font-size: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  width: 19vw;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.content div {
+  margin-bottom: 5px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-card-actions button {
+  border-radius: 50%;
+  border: 0;
+  background-color: transparent;
+  outline: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.new-icon {
+  font-size: 2rem;
+  overflow: unset;
+  margin: 10px 20px;
+}
