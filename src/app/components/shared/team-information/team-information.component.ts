@@ -11,9 +11,13 @@ export class TeamInformationComponent {
 
   }
 
+  deleteUser(consultant_name: string) {
+
+  }
+
   consultants = [
     {
-      name: 'John Doe',
+      name: 'John Dosdssssssse',
     },
     {
       name: 'John Doi',

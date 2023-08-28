@@ -26,13 +26,32 @@ mat-card-content {
 }
 
 #read-more-button {
-  margin-left: auto;
+  font-size: 11px;
   text-align: center;
   color: white;
   padding: 15px;
   height: 1rem;
   border-radius: 20px;
   background-color: #52AB98;
+  margin-right: 10px;
+}
+
+#consultant-name {
+  margin-right: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+#delete-user-button {
+  font-size: 11px;
+  text-align: center;
+  color: white;
+  padding: 15px;
+  height: 1rem;
+  border-radius: 20px;
+  background-color: #e80e0e;
 }
 
 .container {
@@ -44,7 +63,9 @@ mat-card-content {
 }
 
 .member {
+  font-size: 14px;
   flex-grow: 1;
+  justify-content: flex-end;
   display: flex;
   align-items: center;
   margin: 5px;

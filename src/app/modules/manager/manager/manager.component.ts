@@ -11,4 +11,8 @@ export class ManagerComponent {
   constructor(private appComponent: AppComponent) {
     this.appComponent.selectedOption = 'manager';
   }
+
+  manager = {
+    name: 'Luca',
+  }
 }

@@ -11,8 +11,9 @@
     <mat-card-content>
       <div class="container">
         <div class="member" *ngFor="let consultant of consultants">
-          <p id="news-title">{{consultant.name}}</p>
+          <div id="consultant-name">{{consultant.name}}</div>
           <button (click)="openProgress(consultant.name)" mat-button id="read-more-button">INSPECT PROGRESS</button>
+          <button (click)="deleteUser(consultant.name)" mat-button id="delete-user-button">DELETE USER</button>
         </div>
       </div>
     </mat-card-content>
