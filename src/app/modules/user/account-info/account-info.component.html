@@ -30,7 +30,7 @@
       <input formControlName="city" matInput type="text"/>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-select formControlName="type" placeholder="Manager">
+      <mat-select formControlName="manager_username" placeholder="Manager">
         <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -38,4 +38,23 @@
   <mat-dialog-actions>
     <button (click)="save()" mat-button>Save</button>
   </mat-dialog-actions>
+
+  <h1>Change Password</h1>
+  <form [formGroup]="changePasswordForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Old Password</mat-label>
+      <input formControlName="old" matInput type="text"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>New Password</mat-label>
+      <input formControlName="new" matInput type="text"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat New Password</mat-label>
+      <input formControlName="confirm" matInput type="text"/>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button (click)="updatePassword()" mat-button>Update Password</button>
+    </mat-dialog-actions>
+  </form>
 </section>

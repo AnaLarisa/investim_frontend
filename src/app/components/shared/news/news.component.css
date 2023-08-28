@@ -2,10 +2,17 @@
   font-size: 18px;
   background-color: transparent;
   margin-right: 60px;
+  height: 100%;
 }
 
 .card {
   border-radius: 15px;
+  height: 100%;
+  display: flex;
+}
+
+mat-card-actions {
+  margin-top:auto;
 }
 
 #news-title {

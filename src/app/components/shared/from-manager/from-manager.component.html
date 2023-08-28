@@ -1,1 +1,18 @@
-<p>from-manager works!</p>
+<div class="from-manager">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="section-title">
+          <mat-icon class="menu-icon">article</mat-icon>
+          From your manager
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p id="news-title">{{title}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="navigateToManager()" mat-button id="read-more-button">READ MORE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

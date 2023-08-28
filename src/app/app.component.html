@@ -3,16 +3,17 @@
     <app-menu [selectedOption]="selectedOption"></app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-grid-list cols="6" rowHeight="33.33%">
-      <mat-grid-tile  [colspan]="4" [rowspan]="3">
-        <div id="content-tile">
-          <router-outlet></router-outlet>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <app-news style="height: 100%;" *ngIf="selectedOption !== 'newspaper'"></app-news>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div id="sidenav-content-container">
+      <div id="content-tile">
+        <router-outlet></router-outlet>
+      </div>
+      <div id="news-tile" *ngIf="selectedOption !== 'newspaper'">
+        <app-news style="height: 100%;"></app-news>
+      </div>
+      <div id="from-manager-tile" [class.isFirst]="selectedOption === 'newspaper'" *ngIf="selectedOption !== 'manager'">
+        <app-from-manager style="height: 100%;"></app-from-manager>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet *ngIf="selectedOption === ''"></router-outlet>

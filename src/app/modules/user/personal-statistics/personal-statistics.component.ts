@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./personal-statistics.component.css']
 })
 export class PersonalStatisticsComponent {
-
+  consultant = {
+    name: 'John Doe',
+  }
 }

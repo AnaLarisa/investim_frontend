@@ -39,7 +39,13 @@ export class AccountInfoComponent {
     // @ts-ignore
     city: [this.user.city, Validators.required],
     // @ts-ignore
-    manager_username: ["", Validators.required],
+    manager_username: [this.user.manager_username, Validators.required],
+  });
+
+  readonly changePasswordForm = this._formBuilder.group({
+    old: ['', Validators.required],
+    new: ['', Validators.required],
+    confirm: ['', Validators.required],
   });
 
   constructor(
@@ -48,5 +54,9 @@ export class AccountInfoComponent {
 
   save() {
     console.log(this.form.value)
+  }
+
+  updatePassword() {
+    console.log(this.changePasswordForm.value)
   }
 }

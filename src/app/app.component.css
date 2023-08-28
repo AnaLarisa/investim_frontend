@@ -1,7 +1,6 @@
 .app-container {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
   padding-top: 80px;
@@ -19,15 +18,35 @@ app-menu {
   height: 100%;
 }
 
+#content-tile {
+  grid-column: 1 / 5;
+  grid-row: 1 / 4;
+}
+
+#news-tile, #from-manager-tile.isFirst {
+  grid-column: 5 / 7;
+  grid-row: 1;
+  margin:0 20px 30px;
+}
+
+#from-manager-tile {
+  grid-column: 5 / 7;
+  grid-row: 2;
+  margin:0 20px 30px;
+}
+
+#sidenav-content-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 28vh);
+}
+
 
 #content-tile {
   background-color: white;
-  width: 100%;
-  height: calc(100% - 20px);
-  margin: 30px;
+  margin: 0 10px 0 30px;
   border-radius: 20px;
   padding: 10px;
   overflow: hidden;
 }
-
 

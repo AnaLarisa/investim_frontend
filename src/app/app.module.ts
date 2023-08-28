@@ -26,6 +26,7 @@ import {NewsComponent} from "./components/shared/news/news.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { FromManagerComponent } from './components/shared/from-manager/from-manager.component';
+import { ProgressComponent } from './modules/progress/progress.component';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -41,36 +42,36 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    NewsComponent,
-    FromManagerComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
-    FullCalendarModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    LoginModule,
-    SignUpModule,
-    CalendarModule,
-    UserModule,
-    NewspaperModule,
-    ManagerModule,
-    ChatModule,
-    NgOptimizedImage,
-    MatGridListModule,
-  ],
-  providers: [AppComponent],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MenuComponent,
+        NewsComponent,
+        FromManagerComponent,
+    ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(routes),
+        BrowserAnimationsModule,
+        FullCalendarModule,
+        FlexLayoutModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatCardModule,
+        LoginModule,
+        SignUpModule,
+        CalendarModule,
+        UserModule,
+        NewspaperModule,
+        ManagerModule,
+        ChatModule,
+        NgOptimizedImage,
+        MatGridListModule,
+    ],
+    providers: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

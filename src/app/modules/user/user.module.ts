@@ -11,6 +11,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
+import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
+import {AppModule} from "../../app.module";
+import {ProgressModule} from "../progress/progress.module";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 
@@ -18,7 +22,8 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     UserComponent,
     PersonalStatisticsComponent,
-    AccountInfoComponent
+    AccountInfoComponent,
+    RegistrationRequestsComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +37,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatOptionModule,
     MatSelectModule,
     MatButtonModule,
+    ProgressModule,
+    MatGridListModule,
   ]
 })
 export class UserModule { }
