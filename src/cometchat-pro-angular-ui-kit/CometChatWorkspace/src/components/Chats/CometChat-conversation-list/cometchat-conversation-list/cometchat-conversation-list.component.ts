@@ -441,7 +441,8 @@ export class CometChatConversationListComponent implements OnInit, OnChanges {
    */
    markConversationAsDelivered(conversation:CometChat.Conversation){
     let message:CometChat.BaseMessage = conversation.getLastMessage()
-    if(conversation.getConversationType() == CometChat.RECEIVER_TYPE.USER && message  && !message.getDeliveredAt() &&  this.loggedInUser && this.loggedInUser.uid != message.getSender().getUid()){
+    // @ts-ignore
+     if(conversation.getConversationType() == CometChat.RECEIVER_TYPE.USER && message  && !message.getDeliveredAt() &&  this.loggedInUser && this.loggedInUser.uid != message.getSender().getUid()){
     CometChat.markAsDelivered(message)
     }
    }
