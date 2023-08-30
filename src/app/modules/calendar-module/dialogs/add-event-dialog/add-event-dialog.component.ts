@@ -21,22 +21,33 @@ export class AddEventDialogComponent {
     client: ['', Validators.required],
   });
 
-  readonly options = [
+  role = 'mdddanager';
+
+  options = [
     'Analysis',
-    'Consultation(C1)',
-    'Consultation(C2)',
+    'ConsultationC1',
+    'ConsultationC2',
     'Service',
     'PersonalMeeting',
     'TeamMeeting',
     'TellParty',
     'Seminar',
     'Training'
+  ];
+
+  location_options = [
+    "Online",
+    "F2F"
   ]
+
   constructor(
     public dialogRef: MatDialogRef<AddEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DateSelectArg,
     private readonly _formBuilder: FormBuilder,
-  ) {}
+  ) {
+    // @ts-ignore
+    this.options = this.role === 'manager' ? this.options : this.options.slice(0, 5);
+  }
 
   save() {
     console.log(this.form.value)

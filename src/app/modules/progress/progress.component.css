@@ -1,0 +1,106 @@
+#progress-container {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 20px;
+}
+
+.date-picker {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+  background-color: #eee;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 120px;
+}
+
+.date-picker input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 1rem;
+}
+
+#time-period-section {
+  margin-left:27%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 370px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+#circle-progress-section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#circle-progress-section-title .menu-icon {
+  margin-right: 10px;
+}
+
+#circle-progress-section-content {
+  margin-left: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#circle-progress-section {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin-top: 35px;
+}
+
+#circle-progress-section circle-progress {
+  margin-left: 40px;
+}
+
+#progress-bar-section-title {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+#progress-bar-section-title .menu-icon {
+  margin-right: 10px;
+}
+
+#progress-bar-section-content {
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#progress-bar-section-content div {
+  width: 200px;
+}
+
+#progress-bar-section {
+  width: 70%;
+  margin-top: 60px;
+}
+
+#modify-btn{
+  text-align: center;
+  color: white;
+  padding: 15px;
+  margin-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  background-color: #52AB98;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {InspectProgressComponent} from "../inspect-progress/inspect-progress.component";
 
 @Component({
   selector: 'app-team-information',
@@ -7,8 +9,15 @@ import { Component } from '@angular/core';
 })
 export class TeamInformationComponent {
 
-  openProgress(consultant_name: string) {
+  readonly #matDialog = inject(MatDialog);
 
+  constructor(private readonly _matDialog: MatDialog) {}
+
+  openProgress(consultant_name: string) {
+    const dialog = this._matDialog.open(InspectProgressComponent, {data: {consultant_name: consultant_name}});
+    dialog.afterClosed().subscribe((data) => {
+      console.log(data)
+    });
   }
 
   deleteUser(consultant_name: string) {

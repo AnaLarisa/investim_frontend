@@ -25,7 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css",
+              "src/cometchat-pro-angular-ui-kit/CometChatWorkspace/src/css/styles.scss"
             ],
             "scripts": []
           },
@@ -87,6 +89,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css",
+              "src/cometchat-pro-angular-ui-kit/CometChatWorkspace/src/css/styles.scss",
               "src/styles.scss"
             ],
             "scripts": []

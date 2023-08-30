@@ -1,0 +1,5 @@
+<div>
+  Enter a new target
+  <input [ngModel]="target" (ngModelChange)="target = $event" />
+  <button mat-button mat-dialog-close (click)="close()">Save</button>
+</div>

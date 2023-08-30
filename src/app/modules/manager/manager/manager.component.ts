@@ -15,7 +15,7 @@ export class ManagerComponent {
   manager = {
     name: 'Luca',
   }
-  role= 'dmanager'
+  role= 'manager'
 
   searchInput = '';
   fullList = [

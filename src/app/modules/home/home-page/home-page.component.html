@@ -1,1 +1,44 @@
-<p>home-page works!</p>
+<div id="container">
+  <div class="title">
+    <mat-icon id="calendar-icon">calendar_month</mat-icon>
+    <div>Coming Up</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div id="news-list-container">
+    <mat-card id="meeting-item" *ngFor="let meeting of meetings">
+      <mat-card-content>
+        <div class="text-section">
+          <div class="meeting-date">
+            {{meeting.date | date: 'EEEE, MMMM d'}}
+          </div>
+          <div class="meeting-title">
+            {{meeting.title}}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button (click)="navigateToCalendar()" mat-button id="read-more-button">READ MORE</button>
+  <div class="title">
+    <mat-icon id="timelapse-icon">timelapse</mat-icon>
+    <div>My goals</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div id="create-goal-section">
+    <input id="add-goal-input" [ngModel]="goal" (ngModelChange)="goal = $event" placeholder="Add your new goal here">
+    <button (click)="addNew()">
+      <mat-icon class="new-icon">add_circle</mat-icon>
+    </button>
+  </div>
+  <div id="goal-list-container">
+    <ul>
+      <li *ngFor="let goal of goals">
+        <div class="goal-li">
+          {{goal}}
+          <mat-icon id="delete-icon" (click)="deleteGoal(goal)">delete</mat-icon>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+

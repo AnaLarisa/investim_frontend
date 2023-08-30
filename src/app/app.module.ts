@@ -26,8 +26,10 @@ import {NewsComponent} from "./components/shared/news/news.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { FromManagerComponent } from './components/shared/from-manager/from-manager.component';
-import { ProgressComponent } from './modules/progress/progress.component';
 import { TeamInformationComponent } from './components/shared/team-information/team-information.component';
+import { InspectProgressComponent } from './components/shared/inspect-progress/inspect-progress.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {ProgressModule} from "./modules/progress/progress.module";
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -49,30 +51,33 @@ const routes: Routes = [
         NewsComponent,
         FromManagerComponent,
         TeamInformationComponent,
+        InspectProgressComponent,
     ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        RouterModule.forRoot(routes),
-        BrowserAnimationsModule,
-        FullCalendarModule,
-        FlexLayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatCardModule,
-        LoginModule,
-        SignUpModule,
-        CalendarModule,
-        UserModule,
-        NewspaperModule,
-        ManagerModule,
-        ChatModule,
-        NgOptimizedImage,
-        MatGridListModule,
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    FullCalendarModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    LoginModule,
+    SignUpModule,
+    CalendarModule,
+    UserModule,
+    NewspaperModule,
+    ManagerModule,
+    ChatModule,
+    NgOptimizedImage,
+    MatGridListModule,
+    MatDialogModule,
+    ProgressModule,
+  ],
     providers: [AppComponent],
     bootstrap: [AppComponent]
 })

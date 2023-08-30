@@ -18,9 +18,10 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatSelectModule} from "@angular/material/select";
+import { DisplayEventDialogComponent } from './dialogs/display-event-dialog/display-event-dialog.component';
 
 @NgModule({
-  declarations: [CalendarComponent, CalendarPageComponent, AddEventDialogComponent],
+  declarations: [CalendarComponent, CalendarPageComponent, AddEventDialogComponent, DisplayEventDialogComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

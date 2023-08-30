@@ -28,10 +28,10 @@
       <input formControlName="duration" matInput type="number" />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Location</mat-label>
-      <input formControlName="location" matInput type="text" />
+      <mat-select formControlName="location" placeholder="Location">
+        <mat-option *ngFor="let option of location_options" [value]="option">{{option}}</mat-option>
+      </mat-select>
     </mat-form-field>
-
     <mat-form-field appearance="outline">
       <mat-select formControlName="type" placeholder="Type">
         <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
