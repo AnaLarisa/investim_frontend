@@ -24,7 +24,7 @@
 }
 
 #time-period-section {
-  margin-left:27%;
+  margin-left:35px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -103,4 +103,16 @@
   outline: none;
   cursor: pointer;
   font-weight: bold;
+}
+
+#time-and-pie{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#pie-chart-section{
+  width: 400px;
+  height: 200px;
+  margin-top: 50px;
 }

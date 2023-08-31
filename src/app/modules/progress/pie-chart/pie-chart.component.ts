@@ -8,6 +8,40 @@ import Chart from 'chart.js/auto';
 })
 export class PieChartComponent {
   public chart: any;
+  meeting_dict = [
+    {
+      type:"Type 111111111111",
+      number: 50
+    },
+    {
+      type:"Type 111111111111",
+      number: 30
+    },
+    {
+      type:"Type 111111111111",
+      number: 10
+    },
+    {
+      type:"Type 111111111111",
+      number: 70
+    },
+    {
+      type:"Type 111111111111",
+      number: 50
+    },
+    {
+      type:"Type 111111111111",
+      number: 30
+    },
+    {
+      type:"Type 111111111111",
+      number: 10
+    },
+    {
+      type:"Type 111111111111",
+      number: 70
+    },
+  ]
 
   constructor(private elementRef: ElementRef) {
   }
@@ -15,25 +49,6 @@ export class PieChartComponent {
   ngOnInit(): void {
     this.createChart();
   }
-
-  meeting_dict = [
-    {
-      type:"Type 1",
-      number: 50
-    },
-    {
-      type:"Type 2",
-      number: 30
-    },
-    {
-      type:"Type 3",
-      number: 10
-    },
-    {
-      type:"Type 4",
-      number: 70
-    },
-  ]
 
   createChart(){
     let htmlRef = this.elementRef.nativeElement.querySelector(`#MyChart`);

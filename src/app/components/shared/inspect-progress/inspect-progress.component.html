@@ -1,6 +1,6 @@
 <div id="container">
   <div id="progress-container">
-    <app-progress [consultant_name]="consultant_name"></app-progress>
+    <app-progress [consultant_name]="consultant_name" [isEditable]="false"></app-progress>
   </div>
-  <button mat-button mat-dialog-close (click)="close()">Close</button>
+  <button (click)="close()" mat-button mat-dialog-close>Close</button>
 </div>

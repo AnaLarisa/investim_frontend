@@ -10,17 +10,16 @@ import {ChangeTargetComponent} from "./change-target/change-target.component";
 })
 export class ProgressComponent {
   @Input() consultant_name!: string;
-
-  readonly #matDialog = inject(MatDialog);
-
-  constructor(private readonly _matDialog: MatDialog) {}
-
+  @Input() isEditable!: boolean;
   number_of_contracts = 9;
   number_of_clients = 12;
   percentage = this.number_of_contracts / this.number_of_clients * 100;
   target = 40;
   startDate = new Date();
   endDate = new Date();
+  readonly #matDialog = inject(MatDialog);
+
+  constructor(private readonly _matDialog: MatDialog) {}
 
   handleChange(dateName: string, newDate: Date){
     if(dateName === 'startDate') {

@@ -1,18 +1,20 @@
 <div id="progress-container">
-  <div id="time-period-section">
-    From
-    <div class="date-picker">
-      Start date
-      <input type="date" [ngModel]="startDate" (ngModelChange)="handleChange('startDate', $event)">
+  <div id="time-and-pie">
+    <div id="time-period-section">
+      From
+      <div class="date-picker">
+        Start date
+        <input (ngModelChange)="handleChange('startDate', $event)" [ngModel]="startDate" type="date">
+      </div>
+      to
+      <div class="date-picker">
+        End date
+        <input (ngModelChange)="handleChange('endDate', $event)" [ngModel]="endDate" type="date">
+      </div>
     </div>
-    to
-    <div class="date-picker">
-      End date
-      <input type="date" [ngModel]="endDate" (ngModelChange)="handleChange('endDate', $event)">
+    <div id="pie-chart-section">
+      <app-pie-chart></app-pie-chart>
     </div>
-  </div>
-  <div id="pie-chart-section">
-    <app-pie-chart></app-pie-chart>
   </div>
   <div id="circle-progress-section">
     <div id="circle-progress-section-text">
@@ -26,26 +28,26 @@
       </div>
     </div>
     <circle-progress
-      id="circle-progress"
-      [percent]="percentage"
-      [radius]=40
-      [space]= -10
+      [animationDuration]="0"
+      [animation]="false"
+      [innerStrokeWidth]= 10
+      [lazy]= false
       [outerStrokeGradient]= true
       [outerStrokeWidth]= 10
+      [percent]="percentage"
+      [radius]=40
+      [showBackground]= false
+      [showSubtitle]=false
+      [showTitle]=true
+      [showUnits]=false
+      [space]= -10
+      [startFromZero]= false
+      [title]="percentage + '%'"
+      id="circle-progress"
+      innerStrokeColor= "#e7e8ea"
       outerStrokeColor= "#226fc3"
       outerStrokeGradientStopColor= "#53a9ff"
-      innerStrokeColor= "#e7e8ea"
-      [innerStrokeWidth]= 10
       subtitleFontSize= "22"
-      [startFromZero]= false
-      [animation]="false"
-      [animationDuration]="0"
-      [showTitle]=true
-      [showSubtitle]=false
-      [title]="percentage + '%'"
-      [showUnits]=false
-      [showBackground]= false
-      [lazy]= false
     ></circle-progress>
   </div>
   <div id="progress-bar-section">
@@ -58,8 +60,8 @@
       <div>
         {{ number_of_clients }}/{{ target }} clients
       </div>
-      <mat-progress-bar mode="determinate" [value]="number_of_clients / target * 100"></mat-progress-bar>
+      <mat-progress-bar [value]="number_of_clients / target * 100" mode="determinate"></mat-progress-bar>
     </div>
-    <button id="modify-btn" (click)="openDialog()">MODIFY TARGET</button>
+    <button (click)="openDialog()" *ngIf="isEditable" id="modify-btn">MODIFY TARGET</button>
   </div>
 </div>

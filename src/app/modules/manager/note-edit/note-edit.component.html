@@ -13,19 +13,19 @@
         Title:
       </div>
       <div class="section-title">
-        <textarea rows="4" [ngModel]="title" (ngModelChange)="handleChange('title', $event)" matInput placeholder="Title"></textarea>
+        <textarea (ngModelChange)="handleChange('title', $event)" [ngModel]="title" matInput placeholder="Title" rows="2"></textarea>
       </div>
       <div class="title-content">
         Content:
       </div>
       <div class="section-content">
-        <textarea rows="4" [ngModel]="content" (ngModelChange)="handleChange('content', $event)" matInput placeholder="Content"></textarea>
+        <textarea (ngModelChange)="handleChange('content', $event)" [ngModel]="content" matInput placeholder="Content" rows="3"></textarea>
       </div>
       <div class="title-observations">
         Observations:
       </div>
       <div class="section-observations">
-        <textarea rows="6" [ngModel]="observations" (ngModelChange)="handleChange('observations', $event)" matInput placeholder="Observations"></textarea>
+        <textarea (ngModelChange)="handleChange('observations', $event)" [ngModel]="observations" matInput placeholder="Observations" rows="4"></textarea>
       </div>
     </div>
   </mat-card-content>
