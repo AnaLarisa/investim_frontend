@@ -41,4 +41,14 @@ export class RequestsService {
       },
       this.globalVarsService.getOptions());
   }
+
+  getOwnStatistics(startDate: string, endDate: string) {
+    return this.http.get(this.baseUrl + 'statistics/fullStatistics?startDate=' + startDate + '&endDate=' + endDate,
+      this.globalVarsService.getOptions());
+  }
+
+  getConsultantStatistics(username: string, startDate: string, endDate: string) {
+    return this.http.get(this.baseUrl + `statistics/fullStatistics/${username}?startDate=` + startDate + '&endDate=' + endDate,
+      this.globalVarsService.getOptions());
+  }
 }

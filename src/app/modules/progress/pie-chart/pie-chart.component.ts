@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
 import Chart from 'chart.js/auto';
 
 @Component({
@@ -7,41 +7,10 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent {
+
+  @Input() meeting_dict!: any;
+
   public chart: any;
-  meeting_dict = [
-    {
-      type:"Type 111111111111",
-      number: 50
-    },
-    {
-      type:"Type 111111111111",
-      number: 30
-    },
-    {
-      type:"Type 111111111111",
-      number: 10
-    },
-    {
-      type:"Type 111111111111",
-      number: 70
-    },
-    {
-      type:"Type 111111111111",
-      number: 50
-    },
-    {
-      type:"Type 111111111111",
-      number: 30
-    },
-    {
-      type:"Type 111111111111",
-      number: 10
-    },
-    {
-      type:"Type 111111111111",
-      number: 70
-    },
-  ]
 
   constructor(private elementRef: ElementRef) {
   }
@@ -51,15 +20,17 @@ export class PieChartComponent {
   }
 
   createChart(){
+    const keys = this.meeting_dict.map((d: any) => Object.keys(d)[0]);
+    const values = this.meeting_dict.map((d: any) => Object.values(d)[0]);
     let htmlRef = this.elementRef.nativeElement.querySelector(`#MyChart`);
     this.chart = new Chart(htmlRef, {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: this.meeting_dict.map(d => d.type),
+        labels: keys,
         datasets: [{
           label: 'My First Dataset',
-          data: this.meeting_dict.map(d => d.number),
+          data: values,
           backgroundColor: [
             'red',
             'pink',

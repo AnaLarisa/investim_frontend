@@ -1,4 +1,4 @@
-<div id="progress-container">
+<div id="progress-container" *ngIf="user_statistics">
   <div id="time-and-pie">
     <div id="time-period-section">
       From
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="pie-chart-section">
-      <app-pie-chart></app-pie-chart>
+      <app-pie-chart [meeting_dict]="user_statistics.meetingsByMeetingType"></app-pie-chart>
     </div>
   </div>
   <div id="circle-progress-section">
