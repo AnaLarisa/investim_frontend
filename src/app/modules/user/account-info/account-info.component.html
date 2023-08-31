@@ -1,6 +1,6 @@
 <cdk-virtual-scroll-viewport itemSize="300">
 <section class="dialog-content">
-  <h1>Add event</h1>
+  <div class="error" *ngIf="userError">{{userError}}</div>
   <form [formGroup]="form">
     <div class="row-2">
       <mat-form-field appearance="outline">
@@ -47,6 +47,7 @@
   </mat-dialog-actions>
 
   <h1>Change Password</h1>
+  <div class="error" *ngIf="passwordError">{{passwordError}}</div>
   <form [formGroup]="changePasswordForm">
     <mat-form-field appearance="outline">
       <mat-label>Old Password</mat-label>
@@ -54,7 +55,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>New Password</mat-label>
-      <input formControlName="new" matInput type="text"/>
+      <input formControlName="newPass" matInput type="text"/>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Repeat New Password</mat-label>

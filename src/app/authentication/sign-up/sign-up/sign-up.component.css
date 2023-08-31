@@ -116,3 +116,11 @@ input {
   font-family: Roboto;
   color: rgba(43, 103, 119, 0.5);
 }
+
+.error {
+  color: #2b6777;
+  font-size: 14px;
+  line-height: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}

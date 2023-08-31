@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AppComponent} from "../../../app.component";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private requestService: RequestsService,
   ) {
     this.appComponent.selectedOption = ''
   }
@@ -24,14 +26,27 @@ export class SignUpComponent implements OnInit {
     username: new FormControl(''),
     manager: new FormControl(''),
   });
+  errorMsg = ''
 
   ngOnInit(): void {
   }
 
   onSignUp() {
-    //TODO: send http post request to create user
-    console.log(this.signupForm.value)
-    this.goToLogin()
+    this.requestService.askForAccount(this.signupForm.value).subscribe(
+      {
+        next:(data: any) => {
+          this.goToLogin();
+          this.errorMsg = '';
+        },
+        error:(msg) => {
+          if(typeof msg.error === "object"){
+            this.errorMsg = msg.error.errors[Object.keys(msg.error.errors)[0]][0];
+          } else {
+            this.errorMsg = msg.error;
+          }
+          console.log(msg)
+        }
+      });
   }
 
   goToLogin() {

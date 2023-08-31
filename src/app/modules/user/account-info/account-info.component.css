@@ -19,3 +19,11 @@ form {
 cdk-virtual-scroll-viewport {
   display: contents;
 }
+
+.error {
+  color: #2b6777;
+  font-size: 14px;
+  line-height: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}

@@ -9,7 +9,7 @@
       <app-personal-statistics></app-personal-statistics>
     </div>
   </mat-tab>
-  <mat-tab label="Registration Requests">
+  <mat-tab label="Registration Requests" *ngIf="isAdmin">
     <div>
       <app-registration-requests></app-registration-requests>
     </div>

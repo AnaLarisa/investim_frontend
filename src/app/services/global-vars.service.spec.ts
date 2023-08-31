@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CometchatService } from './cometchat.service';
+import { GlobalVarsService } from './global-vars.service';
 
-describe('CometchatService', () => {
-  let service: CometchatService;
+describe('GlobalVarsService', () => {
+  let service: GlobalVarsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CometchatService);
+    service = TestBed.inject(GlobalVarsService);
   });
 
   it('should be created', () => {

@@ -2,6 +2,7 @@
 <div class="container">
   <div class="left-half">
     <div class="space100" ></div>
+    <div class="error" *ngIf="errorMsg !== ''">{{errorMsg}}</div>
     <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
       <input type="text" class="input" id="firstname" placeholder="First Name*" formControlName="firstName">
       <input type="text" class="input" id="lastname" placeholder="Last Name*" formControlName="lastName">

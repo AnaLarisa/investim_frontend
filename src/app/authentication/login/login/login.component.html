@@ -3,6 +3,7 @@
     <div class="left-half">
       <img ngSrc="../../../../assets/logo.png" alt="Image" class="image img-1" height="405" width="560">
       <div class="space130" ></div>
+      <div class="error" *ngIf="credentialsError">Invalid credentials! Please try again<br>(If you have just signed up, your request is pending)</div>
       <form [formGroup]="loginForm" (ngSubmit)="onLogIn()">
         <input type="text" class="input" id="username" placeholder="Username" formControlName="username">
         <input type="password" class="input" id="password" placeholder="Password" formControlName="password">

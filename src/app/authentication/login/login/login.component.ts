@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import {AppComponent} from "../../../app.component";
+import {RequestsService} from "../../../services/requests.service";
+import {GlobalVarsService} from "../../../services/global-vars.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private requestService: RequestsService,
+    private globalVarsService: GlobalVarsService
     ) {
     this.appComponent.selectedOption = ''
   }
@@ -21,16 +26,24 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
+  credentialsError = false;
 
   ngOnInit(): void {
   }
 
   onLogIn() {
     // TODO: http post to validate credentials
-    const token = 'DummyToken';
-    sessionStorage.setItem('authToken', token);
-    console.log(this.loginForm.value);
-    this.router.navigate(['/dashboard']).then();
+    this.requestService.login(this.loginForm.value.username as string, this.loginForm.value.password as string).subscribe(
+    {
+      next:(data: any) => {
+        this.globalVarsService.setUser(data);
+        this.credentialsError = false;
+        this.router.navigate(['/dashboard']).then();
+      },
+      error:(msg) => {
+        this.credentialsError = true;
+      }
+    });
   }
 
   goToSignUp() {

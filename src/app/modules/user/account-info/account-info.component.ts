@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
+import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-account-info',
@@ -8,6 +10,19 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class AccountInfoComponent {
 
+  constructor(
+    private readonly _formBuilder: FormBuilder,
+    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
+  ) {}
+
+  userError = '';
+  passwordError = '';
+
+  ngOnInit(): void {
+    // @ts-ignore
+    // this.user = this.globalVarsService.getUser(); //TODO: implement once api call is created
+  }
 
   readonly options = [
     "Luca",
@@ -44,19 +59,30 @@ export class AccountInfoComponent {
 
   readonly changePasswordForm = this._formBuilder.group({
     old: ['', Validators.required],
-    new: ['', Validators.required],
+    newPass: ['', Validators.required],
     confirm: ['', Validators.required],
   });
 
-  constructor(
-    private readonly _formBuilder: FormBuilder,
-  ) {}
+
 
   save() {
     console.log(this.form.value)
   }
 
   updatePassword() {
-    console.log(this.changePasswordForm.value)
+    const {old, newPass, confirm} = this.changePasswordForm.value;
+    this.requestsService.updatePassword(old as string, newPass as string, confirm as string).subscribe(
+      {
+        next:() => {
+          this.passwordError = 'Password changed Successfully';
+        },
+        error:(msg: any) => {
+          if(typeof msg.error === "object"){
+            this.passwordError = msg.error.errors[Object.keys(msg.error.errors)[0]][0];
+          } else {
+            this.passwordError = msg.error;
+          }
+        }
+      });
   }
 }

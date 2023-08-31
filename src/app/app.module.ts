@@ -30,6 +30,7 @@ import { TeamInformationComponent } from './components/shared/team-information/t
 import { InspectProgressComponent } from './components/shared/inspect-progress/inspect-progress.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {ProgressModule} from "./modules/progress/progress.module";
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule) },
@@ -54,6 +55,7 @@ const routes: Routes = [
         InspectProgressComponent,
     ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),

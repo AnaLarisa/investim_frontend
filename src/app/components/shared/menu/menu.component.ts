@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import {GlobalVarsService} from "../../../services/global-vars.service";
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,16 @@ import { Router } from '@angular/router';
 export class MenuComponent {
   @Input() selectedOption!: string;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private globalVarsService: GlobalVarsService
+  ) { }
+  username = ''
+  ngOnInit(): void {
+    // @ts-ignore
+    this.username = this.globalVarsService.getUser().username;
+  }
+
   navigateTo(option: string): void {
     // Navigate to the selected route
     this.router.navigate([option]).then();
