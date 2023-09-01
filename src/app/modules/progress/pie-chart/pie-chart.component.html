@@ -1,3 +1,4 @@
 <div class="chart-container">
-  <canvas  id="MyChart" width="200px" height="200px" >{{ chart }}</canvas>
+  <canvas  height="200px" id="MyChart" width="200px" >{{ chart }}</canvas>
+  <div *ngIf="keys.length === 0" >No meetings to show</div>
 </div>

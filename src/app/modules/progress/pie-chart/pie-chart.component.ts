@@ -10,27 +10,36 @@ export class PieChartComponent {
 
   @Input() meeting_dict!: any;
 
-  public chart: any;
-
+  public chart: any = null;
+  keys: any = [];
+  values: any = [];
   constructor(private elementRef: ElementRef) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if(this.chart) this.chart.destroy()
     this.createChart();
   }
 
   createChart(){
-    const keys = this.meeting_dict.map((d: any) => Object.keys(d)[0]);
-    const values = this.meeting_dict.map((d: any) => Object.values(d)[0]);
+    this.keys = [];
+    this.values = [];
+    for(let i = 0; i < this.meeting_dict.length; i++){
+      const meeting = this.meeting_dict[i];
+      if(Object.values(meeting)[0] !== 0){
+        this.keys.push(Object.keys(meeting)[0]);
+        this.values.push(Object.values(meeting)[0]);
+      }
+    }
     let htmlRef = this.elementRef.nativeElement.querySelector(`#MyChart`);
     this.chart = new Chart(htmlRef, {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: keys,
+        labels: this.keys,
         datasets: [{
           label: 'My First Dataset',
-          data: values,
+          data: this.values,
           backgroundColor: [
             'red',
             'pink',
@@ -38,7 +47,7 @@ export class PieChartComponent {
             'yellow',
             'orange',
             'blue',
-          ].slice(0, this.meeting_dict.length),
+          ].slice(0, this.keys.length),
           hoverOffset: 4
         }],
       },
