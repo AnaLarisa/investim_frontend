@@ -1,4 +1,6 @@
 import {Component, Input, SimpleChanges} from '@angular/core';
+import {RequestsService} from "../../../services/requests.service";
+import {GlobalVarsService} from "../../../services/global-vars.service";
 
 @Component({
   selector: 'app-note-edit',
@@ -8,31 +10,56 @@ import {Component, Input, SimpleChanges} from '@angular/core';
 export class NoteEditComponent {
 
   @Input() note!: any;
+  @Input() noteArray!: any;
+
+  constructor(
+    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
+  ) {
+  }
 
   title = '';
   content = '';
   observations = '';
   isNew = true;
 
+
   ngOnChanges(changes: SimpleChanges) {
-    // @ts-ignore
-    if(changes.note.currentValue) {
-      // @ts-ignore
-      this.title = changes.note.currentValue.title;
-      // @ts-ignore
-      this.content = changes.note.currentValue.content;
-      // @ts-ignore
-      this.observations = changes.note.currentValue.observations;
+    if(this.note) {
+      this.title = this.note.title;
+      this.content = this.note.content;
+      this.observations = this.note.observations;
       this.isNew = false;
     }
   }
 
   addNew() {
     if(this.isNew){
-      console.log(this.title, this.content, this.observations);
+      const newArticle = {
+        title: this.title,
+        content: this.content,
+        observations: this.observations
+      }
+      this.requestsService.addArticlesFromManager(newArticle).subscribe({
+        next: (data: any) => {
+          this.noteArray.push(data);
+        },
+        error: (err: any) => {
+          if(err.status !== 200)
+          console.log(err);
+        }
+      })
     } else {
-      this.isNew = true;
-      this.title = this.content = this.observations = '';
+      this.requestsService.updateArticlesFromManager(this.note.id, this.note).subscribe({
+        next: (data: any) => {
+          this.isNew = true;
+          this.title = this.content = this.observations = '';
+        },
+        error: (err: any) => {
+          if(err.status !== 200)
+          console.log(err);
+        }
+      })
     }
   }
 

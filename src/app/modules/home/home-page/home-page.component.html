@@ -4,6 +4,7 @@
     <div>Coming Up</div>
   </div>
   <mat-divider></mat-divider>
+  <div *ngIf="meetings.length === 0" class="error">No meetings planned</div>
   <div id="news-list-container">
     <mat-card id="meeting-item" *ngFor="let meeting of meetings">
       <mat-card-content>
@@ -18,7 +19,7 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <button (click)="navigateToCalendar()" mat-button id="read-more-button">READ MORE</button>
+  <button *ngIf="meetings.length !== 0" (click)="navigateToCalendar()" mat-button id="read-more-button">READ MORE</button>
   <div class="title">
     <mat-icon id="timelapse-icon">timelapse</mat-icon>
     <div>My goals</div>

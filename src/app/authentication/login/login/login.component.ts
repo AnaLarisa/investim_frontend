@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private appComponent: AppComponent,
-    private requestService: RequestsService,
+    private requestsService: RequestsService,
     private globalVarsService: GlobalVarsService
     ) {
     this.appComponent.selectedOption = ''
@@ -32,13 +32,39 @@ export class LoginComponent implements OnInit {
   }
 
   onLogIn() {
-    // TODO: http post to validate credentials
-    this.requestService.login(this.loginForm.value.username as string, this.loginForm.value.password as string).subscribe(
+    this.requestsService.login(this.loginForm.value.username as string, this.loginForm.value.password as string).subscribe(
     {
       next:(data: any) => {
-        this.globalVarsService.setUser(data);
+        this.globalVarsService.setUser(data); // load user
         this.credentialsError = false;
-        this.router.navigate(['/dashboard']).then();
+        this.requestsService.getNews().subscribe({
+          next: (data: any) => {
+            this.globalVarsService.setNews(data)  // load news
+            this.requestsService.getArticlesFromManager().subscribe({
+              next: (data: any) => {
+                this.globalVarsService.setArticles(data);  // load articles sent by the manager
+                this.requestsService.getMeetings().subscribe({
+                  next: (data: any) => {
+                    this.globalVarsService.setMeetings(data);  // load meetings
+                    this.router.navigate(['/dashboard']).then();
+                  },
+                  error: (err: any) => {
+                    if(err.status !== 200)
+                    console.log(err);
+                  }
+                })
+              },
+              error: (err: any) => {
+                if(err.status !== 200)
+                console.log(err);
+              }
+            })
+          },
+          error: (err: any) => {
+            if(err.status !== 200)
+            console.log(err);
+          }
+        });
       },
       error:(msg) => {
         this.credentialsError = true;

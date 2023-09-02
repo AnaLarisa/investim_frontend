@@ -18,44 +18,41 @@ export class AccountInfoComponent {
 
   userError = '';
   passwordError = '';
-
+  private user = {}
+  form: any = null
+  options: any = []
   ngOnInit(): void {
     // @ts-ignore
-    // this.user = this.globalVarsService.getUser(); //TODO: implement once api call is created
-  }
+    this.user = this.globalVarsService.getUser();
+    this.requestsService.getManagers().subscribe({
+      next: (data: any) => {
+        this.options = data
+      },
+      error: (err: any) => {
+        if(err.status !== 200)
+        console.log(err);
+      }
+    })
+    this.form = this._formBuilder.group({
+      // @ts-ignore
+      firstName: [this.user.firstName],
+      // @ts-ignore
+      lastName: [this.user.lastName],
+      // @ts-ignore
+      email: [this.user.email, Validators.email],
+      // @ts-ignore
+      address: [this.user.address],
+      // @ts-ignore
+      phone: [this.user.phoneNumber],
+      // @ts-ignore
+      username: [this.user.username, Validators.required],
+      // @ts-ignore
+      city: [this.user.city],
+      // @ts-ignore
+      managerUsername: [this.user.managerUsername, Validators.required],
+    });
 
-  readonly options = [
-    "Luca",
-    "Matei"
-  ]
-  private user = {
-    first_name: "Mehrab",
-    last_name: "Bozorgi",
-    email: "Mehrabbozorgi.business@gmail.com",
-    address: "Too long to write it lul",
-    phone: "+42000000",
-    username: "Username",
-    city: "Mehrab",
-    manager_username: "Luca",
-  };
-  readonly form = this._formBuilder.group({
-    // @ts-ignore
-    first_name: [this.user.first_name, Validators.required],
-    // @ts-ignore
-    last_name: [this.user.last_name, Validators.required],
-    // @ts-ignore
-    email: [this.user.email, Validators.required],
-    // @ts-ignore
-    address: [this.user.address, Validators.required],
-    // @ts-ignore
-    phone: [this.user.phone, Validators.required],
-    // @ts-ignore
-    username: [this.user.username, Validators.required],
-    // @ts-ignore
-    city: [this.user.city, Validators.required],
-    // @ts-ignore
-    manager_username: [this.user.manager_username, Validators.required],
-  });
+  }
 
   readonly changePasswordForm = this._formBuilder.group({
     old: ['', Validators.required],
@@ -63,10 +60,18 @@ export class AccountInfoComponent {
     confirm: ['', Validators.required],
   });
 
-
-
   save() {
-    console.log(this.form.value)
+    this.requestsService.updateUser(this.form.value).subscribe({
+      next: (data: any) => {
+        this.userError = 'User updated Successfully';
+      },
+      error: (err: any) => {
+        if(err.status !== 200) {
+          console.log(err);
+          this.userError = "Invalid fields!"
+        }
+      }
+    })
   }
 
   updatePassword() {
@@ -74,13 +79,16 @@ export class AccountInfoComponent {
     this.requestsService.updatePassword(old as string, newPass as string, confirm as string).subscribe(
       {
         next:() => {
-          this.passwordError = 'Password changed Successfully';
         },
         error:(msg: any) => {
-          if(typeof msg.error === "object"){
-            this.passwordError = msg.error.errors[Object.keys(msg.error.errors)[0]][0];
+          if(msg.status === 200){
+            this.passwordError = 'Password updated Successfully';
           } else {
-            this.passwordError = msg.error;
+            if(typeof msg.error === "object"){
+              this.passwordError = msg.error.errors[Object.keys(msg.error.errors)[0]][0];
+            } else {
+              this.passwordError = msg.error;
+            }
           }
         }
       });

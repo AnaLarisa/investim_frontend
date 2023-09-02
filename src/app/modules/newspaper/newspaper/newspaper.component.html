@@ -5,7 +5,7 @@
     <mat-card id="news-item" *ngFor="let article of articles">
       <mat-card-content>
         <a class="nostyle" [href]="article.url">
-          <img [src]="article.imageUrl" alt="no image provided"/>
+          <img [src]="article.urlToImage" alt="no image provided"/>
           <div id="news-item-text">
             <div id="news-item-title">{{article.title}}</div>
             <div id="news-item-author">{{article.author}}</div>

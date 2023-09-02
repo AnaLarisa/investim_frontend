@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {GlobalVarsService} from "../../../services/global-vars.service";
 
 @Component({
   selector: 'app-news',
@@ -8,12 +9,23 @@ import {Router} from "@angular/router";
 })
 export class NewsComponent {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private globalVarsService: GlobalVarsService,
+  ) { }
+
+  newsTitle = ""
+  newsImageUrl = ""
+
+  ngOnInit(): void {
+    const news_article = (this.globalVarsService.getNews())[0];
+    this.newsTitle = news_article.title;
+    this.newsImageUrl = news_article.urlToImage;
+  }
 
   navigateToNews(): void {
     this.router.navigate(['newspaper']).then()
   }
 
-  newsTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit Intelegi?"
-  newsImageUrl = "https://yt3.ggpht.com/a/AATXAJzsHPys1EoSnxprcPapwsQsb1gr97KzKfnRBw=s900-c-k-c0xffffffff-no-rj-mo"
+
 }

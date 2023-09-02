@@ -1,15 +1,15 @@
 <cdk-virtual-scroll-viewport itemSize="300">
 <section class="dialog-content">
   <div class="error" *ngIf="userError">{{userError}}</div>
-  <form [formGroup]="form">
+  <form [formGroup]="form" *ngIf="form">
     <div class="row-2">
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
-        <input formControlName="first_name" matInput type="text"/>
+        <input formControlName="firstName" matInput type="text"/>
       </mat-form-field>
       <mat-form-field appearance="outline" class="slide">
         <mat-label>Last Name</mat-label>
-        <input formControlName="last_name" matInput type="text"/>
+        <input formControlName="lastName" matInput type="text"/>
       </mat-form-field>
     </div>
     <mat-form-field appearance="outline" class="row">
@@ -36,7 +36,7 @@
         <input formControlName="city" matInput type="text"/>
       </mat-form-field>
       <mat-form-field appearance="outline" class="slide">
-        <mat-select formControlName="manager_username" placeholder="Manager">
+        <mat-select formControlName="managerUsername" placeholder="Manager">
           <mat-option *cdkVirtualFor="let option of options" [value]="option">{{option}}</mat-option>
         </mat-select>
       </mat-form-field>

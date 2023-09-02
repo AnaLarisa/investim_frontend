@@ -44,12 +44,11 @@ export class SignUpComponent implements OnInit {
           } else {
             this.errorMsg = msg.error;
           }
-          console.log(msg)
         }
       });
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then();
   }
 }

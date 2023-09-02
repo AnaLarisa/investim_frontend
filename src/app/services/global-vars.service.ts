@@ -24,6 +24,35 @@ export class GlobalVarsService {
 
   constructor() { }
 
+  private meetings: any[] = [];
+
+  setMeetings(meetings: any[]) {
+    this.meetings = meetings;
+  }
+
+  getMeetings() {
+    return this.meetings;
+  }
+
+  private articles: any[] = [];
+
+  setArticles(articles: any[]) {
+    this.articles = articles;
+  }
+
+  getArticles() {
+    return this.articles;
+  }
+
+  private news: any[] = [];
+
+  setNews(news: any[]) {
+    this.news = news;
+  }
+  getNews() {
+    return this.news;
+  }
+
   private options = {}
 
   setOptions(options: any) {

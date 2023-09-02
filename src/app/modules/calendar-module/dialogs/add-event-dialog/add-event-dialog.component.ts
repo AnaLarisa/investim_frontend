@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {DateSelectArg} from "@fullcalendar/core";
 import {FormBuilder, Validators} from "@angular/forms";
+import {GlobalVarsService} from "../../../../services/global-vars.service";
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -9,6 +10,17 @@ import {FormBuilder, Validators} from "@angular/forms";
   styleUrls: ['./add-event-dialog.component.css']
 })
 export class AddEventDialogComponent {
+
+
+  constructor(
+    public dialogRef: MatDialogRef<AddEventDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DateSelectArg,
+    private readonly _formBuilder: FormBuilder,
+    private globalVarsService: GlobalVarsService,
+  ) {
+    // @ts-ignore
+    this.options = this.role === 'manager' ? this.options : this.options.slice(0, 5);
+  }
   readonly form = this._formBuilder.group({
     title: [''],
     date: [this.data.start, Validators.required],
@@ -21,8 +33,7 @@ export class AddEventDialogComponent {
     client: ['', Validators.required],
   });
 
-  role = 'mdddanager';
-
+  role = '';
   options = [
     'Analysis',
     'ConsultationC1',
@@ -34,23 +45,16 @@ export class AddEventDialogComponent {
     'Seminar',
     'Training'
   ];
-
   location_options = [
     "Online",
     "F2F"
   ]
 
-  constructor(
-    public dialogRef: MatDialogRef<AddEventDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DateSelectArg,
-    private readonly _formBuilder: FormBuilder,
-  ) {
-    // @ts-ignore
-    this.options = this.role === 'manager' ? this.options : this.options.slice(0, 5);
+  ngOnInit(): void {
+    this.role = this.globalVarsService.getUser()?.isAdmin ? 'manager' : 'consultant';
   }
 
   save() {
-    console.log(this.form.value)
     this.dialogRef.close(this.form.value);
   }
 }

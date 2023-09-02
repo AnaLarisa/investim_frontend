@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {InspectProgressComponent} from "../inspect-progress/inspect-progress.component";
+import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-team-information',
@@ -11,38 +13,49 @@ export class TeamInformationComponent {
 
   readonly #matDialog = inject(MatDialog);
 
-  constructor(private readonly _matDialog: MatDialog) {}
+  constructor(
+    private readonly _matDialog: MatDialog,
+    private requestsService: RequestsService,
+    private globalVarsService: GlobalVarsService,
+  ) {}
+
+  consultants: any = null;
+  selectedForDeletion = -1;
+  role = '';
+  ngOnInit(): void {
+    this.role = this.globalVarsService.getUser()?.isAdmin ? 'manager' : 'consultant';
+    this.requestsService.getConsultants().subscribe({
+      next: (data: any) => {
+        this.consultants = data;
+      },
+      error: (err: any) => {
+        if(err.status !== 200)
+        console.log(err)
+      }
+    })
+  }
 
   openProgress(consultant_name: string) {
-    const dialog = this._matDialog.open(InspectProgressComponent, {data: {consultant_name: consultant_name}});
-    dialog.afterClosed().subscribe((data) => {
-      console.log(data)
-    });
+    this._matDialog.open(InspectProgressComponent, {data: {consultant_name: consultant_name}});
   }
 
-  deleteUser(consultant_name: string) {
-
-  }
-
-  consultants = [
-    {
-      name: 'John Dosdssssssse',
-    },
-    {
-      name: 'John Doi',
-    },
-    {
-      name: 'John Doe',
-    },
-    {
-      name: 'John Doi',
-    },
-    {
-      name: 'John Doe',
-    },
-    {
-      name: 'John Doi',
+  deleteUser(consultant_name: string, index: number) {
+    if(index === this.selectedForDeletion){
+      this.requestsService.deleteConsultant(consultant_name).subscribe({
+        next: (data: any) => {
+          this.consultants = this.consultants.filter((consultant: any) => consultant.username !== consultant_name);
+        },
+        error: (err: any) => {
+          if(err.status === 200){
+            this.consultants = this.consultants.filter((consultant: any) => consultant.username !== consultant_name);
+          } else {
+            if(err.status !== 200)
+            console.log(err);
+          }
+        }
+      })
+    } else {
+      this.selectedForDeletion = index;
     }
-  ]
-
+  }
 }

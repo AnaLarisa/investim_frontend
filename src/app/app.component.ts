@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {GlobalVarsService} from "./services/global-vars.service";
 import {Router} from "@angular/router";
+import {RequestsService} from "./services/requests.service";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent {
 
   constructor(
     private globalVarsService: GlobalVarsService,
-    private router: Router
+    private router: Router,
+    private requestsService: RequestsService,
   ) {}
 
   ngOnInit(): void {

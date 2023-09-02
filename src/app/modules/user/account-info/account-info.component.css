@@ -27,3 +27,7 @@ cdk-virtual-scroll-viewport {
   margin-bottom: 10px;
   text-align: center;
 }
+
+.dialog-content {
+  margin-top: 15px;
+}

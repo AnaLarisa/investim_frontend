@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {AppComponent} from "../../../app.component";
 import {Router} from "@angular/router";
+import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-home-page',
@@ -9,34 +11,52 @@ import {Router} from "@angular/router";
 })
 export class HomePageComponent {
 
-  constructor(private appComponent: AppComponent, private router: Router) {
+  constructor(
+    private appComponent: AppComponent,
+    private router: Router,
+    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
+  ) {
     this.appComponent.selectedOption = 'dashboard';
   }
 
-  goal = '';
-  goals = [
-    'My first life goal',
-    'My second life goal',
-    'My third life goal',
-  ]
+  meetings: any = []
+  goals: any = []
 
-  meetings = [
-    {
-      date: new Date(),
-      title: 'Meeting 1',
-    },
-    {
-      date: new Date(),
-      title: 'Meeting 2',
-    },
-    {
-      date: new Date(),
-      title: 'Meeting 3',
-    }
-  ]
+  ngOnInit(): void {
+    this.requestsService.getMeetingsUpcoming3().subscribe({
+      next: (data: any) => {
+        this.meetings = data;
+      },
+      error: (err: any) => {
+        if(err.status !== 404)
+        console.log(err);
+      }
+    })
+    this.requestsService.getGoals().subscribe({
+      next: (data: any) => {
+        this.goals = data;
+      },
+      error: (err: any) => {
+        if(err.status !== 404)
+        console.log(err);
+      }
+    })
+  }
+
+  goal = '';
+
+
 
   addNew() {
-    this.goals.push(this.goal)
+    this.requestsService.addGoal(this.goal).subscribe({
+      next: (data: any) => {
+        this.goals.push(this.goal)
+      },
+      error: (err: any) => {
+        this.goals.push(this.goal)
+      }
+    })
   }
 
   navigateToCalendar() {
@@ -44,6 +64,13 @@ export class HomePageComponent {
   }
 
   deleteGoal(goal: string) {
-    this.goals = this.goals.filter(g => g !== goal);
+    this.requestsService.deleteGoal(goal).subscribe({
+      next: (data: any) => {
+        this.goals = this.goals.filter((g: any) => g !== goal);
+      },
+      error: (err: any) => {
+        this.goals = this.goals.filter((g: any) => g !== goal);
+      }
+    })
   }
 }

@@ -67,3 +67,9 @@ mat-card-actions button {
   overflow: unset;
   margin: 10px 20px;
 }
+
+#save-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-right: 15px;
+}

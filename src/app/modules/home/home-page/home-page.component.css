@@ -100,3 +100,11 @@
 #goal-list-container ul li:nth-child(even) {
   background-color: #f8f8f8;
 }
+
+.error {
+  color: #2b6777;
+  font-size: 14px;
+  line-height: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}

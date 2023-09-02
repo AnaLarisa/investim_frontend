@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {AppComponent} from "../../../app.component";
+import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-manager',
@@ -8,40 +10,34 @@ import {AppComponent} from "../../../app.component";
 })
 export class ManagerComponent {
 
-  constructor(private appComponent: AppComponent) {
+  constructor(
+    private appComponent: AppComponent,
+    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
+  ) {
     this.appComponent.selectedOption = 'manager';
   }
 
   manager = {
-    name: 'Luca',
+    name: '',
   }
-  role= 'manager'
+  role= ''
 
-  searchInput = '';
-  fullList = [
-    {
-      title:'title',
-      content:'https://www.example.com',
-      observations:'This is an observation',
-    },
-    {
-      title:'title2',
-      content:'https://www.example.com',
-      observations:'This is an observation',
-    },
-    {
-      title:'title3',
-      content:'https://www.example.com',
-      observations:'This is an observation',
-    },
-    {
-      title:'title4',
-      content:'https://www.example.com',
-      observations:'This is an observation',
-    },
-  ];
-  matchingSearch: any = this.fullList;
+  searchInput: any = '';
+  fullList: any = [];
+  matchingSearch: any = [];
   selectedNote: any = null;
+
+  ngOnInit(): void {
+    const user = this.globalVarsService.getUser();
+    this.role = user?.isAdmin ? 'manager' : 'consultant'
+    this.manager.name = user?.managerUsername as string
+    this.fullList = this.globalVarsService.getArticles();
+    this.matchingSearch = this.fullList;
+  }
+
+
+
 
   onChange(newValue: any) {
     this.searchInput = newValue;
@@ -49,7 +45,7 @@ export class ManagerComponent {
     if(newValue === '') {
       this.matchingSearch = this.fullList;
     } else {
-      this.fullList.forEach((item) => {
+      this.fullList.forEach((item: any) => {
         if (item.title.includes(newValue)) {
           this.matchingSearch.push(item);
         }
@@ -62,11 +58,22 @@ export class ManagerComponent {
       window.location.href = this.matchingSearch[index].content;
     } else {
       this.selectedNote = index
+      console.log("selectedNote ", this.matchingSearch[this.selectedNote]);
     }
   }
 
   deleteNote(event: any, note: any) {
-    event.stopPropagation()
-    console.log(note)
+    event.stopPropagation();
+    this.requestsService.deleteArticlesFromManager(note.id).subscribe({
+      next: (data: any) => {
+        this.matchingSearch = this.matchingSearch.filter((item: any) => item.id !== note.id)
+      },
+      error: (err: any) => {
+        if(err.status === 200)
+          this.matchingSearch = this.matchingSearch.filter((item: any) => item.id !== note.id)
+        else
+          console.log(err);
+      }
+    })
   }
 }

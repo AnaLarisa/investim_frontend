@@ -5,6 +5,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {MatDialog} from "@angular/material/dialog";
 import {AddEventDialogComponent} from "../dialogs/add-event-dialog/add-event-dialog.component";
 import {DisplayEventDialogComponent} from "../dialogs/display-event-dialog/display-event-dialog.component";
+import {RequestsService} from "../../../services/requests.service";
+import {GlobalVarsService} from "../../../services/global-vars.service";
 
 @Component({
   selector: 'app-calendar',
@@ -12,6 +14,29 @@ import {DisplayEventDialogComponent} from "../dialogs/display-event-dialog/displ
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent {
+
+  constructor(
+    private readonly _matDialog: MatDialog,
+    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
+  ) {}
+
+  loadedEvents: any = [];
+
+  ngOnInit(): void {
+    this.loadedEvents = this.globalVarsService.getMeetings().map((item: any) => ({
+      title: item.title,
+      date: item.date,
+      allDay: true,
+      client: item.clientName,
+      type: item.type,
+      location: item.location,
+      description: item.description,
+      notes: item.meetingNotes,
+      _duration: item.duration,
+      time: item.time,
+    }))
+  }
 
   calendarOptions: CalendarOptions = {
     initialEvents: [], // alternatively, use the `events` setting to fetch from a feed
@@ -36,11 +61,9 @@ export class CalendarComponent {
     height: 'auto',
     selectable: true,
     select: this.addEvent.bind(this),
-    events: [],
+    events: this.loadedEvents,
   };
   readonly #matDialog = inject(MatDialog);
-
-  constructor(private readonly _matDialog: MatDialog) {}
 
   handleEventClick(clickInfo: any) {
     const args = {
@@ -64,21 +87,40 @@ export class CalendarComponent {
 
   addEvent(args: DateSelectArg) {
     const dialog = this._matDialog.open(AddEventDialogComponent, {data: args});
-    // console.log(args.startStr);
     dialog.afterClosed().subscribe((data) => {
-      const calendarApi = args.view.calendar;
-      calendarApi.addEvent({
-        title: data.title,
-        date: data.date,
-        allDay: true,
-        client: data.client,
-        type: data.type,
-        location: data.location,
-        description: data.description,
-        notes: data.notes,
-        _duration: data.duration,
-        time: data.time,
-      })
+      if(data){
+        this.requestsService.addMeeting({
+          title: data.title,
+          date: data.date,
+          time: data.time,
+          duration: data.duration,
+          location: data.location,
+          type: data.type,
+          description: data.description,
+          meetingNotes: data.notes,
+          clientName: data.client,
+        }).subscribe({
+          next: (data: any) => {
+            const calendarApi = args.view.calendar;
+            calendarApi.addEvent({
+              title: data.title,
+              date: data.date,
+              allDay: true,
+              client: data.client,
+              type: data.type,
+              location: data.location,
+              description: data.description,
+              notes: data.notes,
+              _duration: data.duration,
+              time: data.time,
+            })
+          },
+          error: (err: any) => {
+            if(err.status !== 200)
+            console.log(err);
+          }
+        })
+      }
     });
   }
 }

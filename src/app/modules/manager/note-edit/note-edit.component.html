@@ -31,7 +31,8 @@
   </mat-card-content>
   <mat-card-actions>
     <button (click)="addNew()">
-      <mat-icon class="new-icon">add_circle_outline</mat-icon>
+      <mat-icon *ngIf="isNew" class="new-icon">add_circle_outline</mat-icon>
+      <div id="save-text" *ngIf="!isNew">SAVE</div>
     </button>
   </mat-card-actions>
 </mat-card>

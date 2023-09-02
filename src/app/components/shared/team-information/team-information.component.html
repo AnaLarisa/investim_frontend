@@ -9,11 +9,18 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="container">
-        <div *ngFor="let consultant of consultants" class="member">
-          <div id="consultant-name">{{consultant.name}}</div>
-          <button (click)="openProgress(consultant.name)" class="read-more-button" mat-button>INSPECT PROGRESS</button>
-          <button (click)="deleteUser(consultant.name)" class="delete-user-button" mat-button>DELETE USER</button>
+      <div class="container" *ngIf="consultants">
+        <div *ngFor="let consultant of consultants; let i = index" class="member">
+          <div id="consultant-name">{{consultant}}</div>
+          <button (click)="openProgress(consultant)" class="read-more-button" mat-button>INSPECT PROGRESS</button>
+          <button *ngIf="role === 'manager'" (click)="deleteUser(consultant, i)" class="delete-user-button" mat-button>
+            <div *ngIf="i !== selectedForDeletion">
+              DELETE USER
+            </div>
+            <div *ngIf="i === selectedForDeletion">
+              CONFIRM?
+            </div>
+          </button>
         </div>
       </div>
     </mat-card-content>

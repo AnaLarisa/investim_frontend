@@ -45,7 +45,6 @@ export class ProgressComponent {
       this.requestsService.getOwnStatistics(startDate, endDate).subscribe({
         next:(data: any) => {
           this.user_statistics = data;
-          console.log(data)
           this.initValues(data);
         },
         error:(msg: any) => {
@@ -95,7 +94,15 @@ export class ProgressComponent {
   openDialog() {
     const dialog = this._matDialog.open(ChangeTargetComponent);
     dialog.afterClosed().subscribe((data) => {
-      console.log(data)
+      this.target = data;
+      this.requestsService.setTarget(data).subscribe({
+        next: (data: any) => {},
+        error: (err: any) => {
+          if(err.status !== 200) {
+            console.log(err);
+          }
+        }
+      })
     });
   }
 }
