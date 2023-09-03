@@ -4,3 +4,27 @@
   flex: 1;
   padding: 24px 32px 40px;
 }
+
+#add-event-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#add-event-form div {
+  flex-grow: 1;
+}
+
+#description-container mat-form-field {
+  width: 100%;
+}
+
+
+.error {
+  color: #2b6777;
+  font-size: 14px;
+  line-height: auto;
+  margin-bottom: 15px;
+  mergin-top: 15px;
+  width:100%;
+  text-align: center;
+}

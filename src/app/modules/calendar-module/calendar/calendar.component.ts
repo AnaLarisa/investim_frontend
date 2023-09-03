@@ -21,10 +21,12 @@ export class CalendarComponent {
     private requestsService: RequestsService,
   ) {}
 
-  loadedEvents: any = [];
+  loadedEvents: any = null;
+  calendarOptions: CalendarOptions = {};
 
   ngOnInit(): void {
     this.loadedEvents = this.globalVarsService.getMeetings().map((item: any) => ({
+      _id: item.id,
       title: item.title,
       date: item.date,
       allDay: true,
@@ -36,33 +38,37 @@ export class CalendarComponent {
       _duration: item.duration,
       time: item.time,
     }))
+    this.calendarOptions = {
+      editable: true,
+      selectMirror: true,
+      eventClick: this.handleEventClick.bind(this),
+      /* you can update a remote database when these fire:
+      eventAdd:
+      eventChange:
+      eventRemove:
+      */
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      plugins: [
+        dayGridPlugin,
+        interactionPlugin,
+      ],
+      initialView: 'dayGridMonth',
+      height: 'auto',
+      selectable: true,
+      select: this.addEvent.bind(this),
+      events: this.loadedEvents.map((event: any) => ({
+        ...event,
+        start: event.date,
+        end: event.date + event._duration
+      })),
+    };
   }
 
-  calendarOptions: CalendarOptions = {
-    initialEvents: [], // alternatively, use the `events` setting to fetch from a feed
-    editable: true,
-    selectMirror: true,
-    eventClick: this.handleEventClick.bind(this),
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: ''
-    },
-    plugins: [
-      dayGridPlugin,
-      interactionPlugin,
-    ],
-    initialView: 'dayGridMonth',
-    height: 'auto',
-    selectable: true,
-    select: this.addEvent.bind(this),
-    events: this.loadedEvents,
-  };
+
   readonly #matDialog = inject(MatDialog);
 
   handleEventClick(clickInfo: any) {
@@ -75,12 +81,28 @@ export class CalendarComponent {
       {
         data: {
           ...args,
-          remove: clickInfo.event.remove
         }
       });
-      dialog.afterClosed().subscribe((data) => {
-        if (data) {
-          clickInfo.event.remove();
+      dialog.afterClosed().subscribe((dataReceived) => {
+        if (dataReceived && dataReceived.delete) {
+          this.requestsService.deleteMeeting(dataReceived.data._id).subscribe({
+            next: (data: any) => {
+              clickInfo.event.remove();
+              let meetings = this.globalVarsService.getMeetings();
+              meetings = meetings.filter((item: any) => item.id !== dataReceived.data._id);
+              this.globalVarsService.setMeetings(meetings);
+            },
+            error: (err: any) => {
+              if(err.status !== 200){
+                console.log(err);
+              } else {
+                clickInfo.event.remove();
+                let meetings = this.globalVarsService.getMeetings();
+                meetings = meetings.filter((item: any) => item.id !== dataReceived.data._id);
+                this.globalVarsService.setMeetings(meetings);
+              }
+            }
+          })
         }
       });
   }
@@ -89,31 +111,40 @@ export class CalendarComponent {
     const dialog = this._matDialog.open(AddEventDialogComponent, {data: args});
     dialog.afterClosed().subscribe((data) => {
       if(data){
-        this.requestsService.addMeeting({
+        let time = data.time.slice(0,5);
+        if(time[4] == ' '){
+          time = "0" + time.slice(0,4);
+        }
+        const newMeeting = {
           title: data.title,
           date: data.date,
-          time: data.time,
+          time: time,
           duration: data.duration,
           location: data.location,
           type: data.type,
           description: data.description,
           meetingNotes: data.notes,
           clientName: data.client,
-        }).subscribe({
+        }
+        this.requestsService.addMeeting(newMeeting).subscribe({
           next: (data: any) => {
             const calendarApi = args.view.calendar;
             calendarApi.addEvent({
+              _id: data.id,
               title: data.title,
               date: data.date,
               allDay: true,
-              client: data.client,
+              client: data.clientName,
               type: data.type,
               location: data.location,
               description: data.description,
-              notes: data.notes,
+              notes: data.meetingNotes,
               _duration: data.duration,
               time: data.time,
             })
+            const meetings = this.globalVarsService.getMeetings();
+            meetings.push(data);
+            this.globalVarsService.setMeetings(meetings);
           },
           error: (err: any) => {
             if(err.status !== 200)

@@ -26,8 +26,13 @@ export class MenuComponent {
   }
 
   logout(): void {
-    // Implement your logout logic here
     sessionStorage.setItem("authToken", "");
+    this.globalVarsService.setReloadedChat(false)
+    this.globalVarsService.setMeetings([]);
+    this.globalVarsService.setArticles([]);
+    this.globalVarsService.setNews([]);
+    this.globalVarsService.setOptions({});
+    this.globalVarsService.setUser(null);
     this.router.navigate(['login']).then()
   }
 }

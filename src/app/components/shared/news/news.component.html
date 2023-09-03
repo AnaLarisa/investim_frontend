@@ -10,7 +10,10 @@
     </mat-card-header>
     <mat-card-content>
       <p id="news-title">{{newsTitle}}</p>
-      <img src="{{newsImageUrl}}" width="100" height="100" alt="Imgn't"/>
+      <img *ngIf="newsImageUrl" src="{{newsImageUrl}}" width="100" height="100" alt="Imgn't"/>
+      <div *ngIf="!newsImageUrl" class="placeholder-icon-container">
+        <mat-icon class="placeholder-icon">newspaper</mat-icon>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="navigateToNews()" mat-button id="read-more-button">READ MORE</button>

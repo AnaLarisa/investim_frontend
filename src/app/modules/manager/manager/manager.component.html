@@ -6,7 +6,7 @@
     <input id="search-input" [ngModel]="searchInput" (ngModelChange)="onChange($event)">
   </div>
   <div id="note-details-and-edit-container">
-    <div id="note-edit" *ngIf="role === 'manager'"><app-note-edit [noteArray]="fullList" [note]="selectedNote !== null ? matchingSearch[selectedNote] : null"></app-note-edit></div>
+    <div id="note-edit" *ngIf="role === 'manager'"><app-note-edit [selectedNote]="selectedNote" [noteArray]="fullList" [note]="selectedNote !== null ? matchingSearch[selectedNote] : null"></app-note-edit></div>
     <div id="note-details" *ngIf="role !== 'manager' && selectedNote !== null"><app-note-details [note]="matchingSearch[selectedNote]"></app-note-details></div>
   </div>
   <div class="container">

@@ -26,6 +26,16 @@ export class GlobalVarsService {
 
   private meetings: any[] = [];
 
+  private reloadedChat = false;
+
+  setReloadedChat(reloadedChat: boolean) {
+    this.reloadedChat = reloadedChat;
+  }
+
+  getReloadedChat() {
+    return this.reloadedChat;
+  }
+
   setMeetings(meetings: any[]) {
     this.meetings = meetings;
   }
@@ -63,13 +73,14 @@ export class GlobalVarsService {
   }
 
   private user: User | null = null;
-  setUser(user: User) {
+  setUser(user: User | null) {
     this.user = user;
-    this.setOptions({
-      headers: {
-        Authorization: `Bearer ${user.authorizationToken}`
-      }
-    })
+    if(user)
+      this.setOptions({
+        headers: {
+          Authorization: `Bearer ${user.authorizationToken}`
+        }
+      })
   }
   getUser() {
     return this.user;

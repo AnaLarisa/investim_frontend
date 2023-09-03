@@ -42,3 +42,18 @@ a.nostyle:link, a.nostyle:visited {
   overflow:hidden; overflow-y:scroll;
   max-height: 700px;
 }
+
+.placeholder-icon {
+  font-size: 70px;
+  height: unset;
+  width: unset;
+  color: #bebebe;
+}
+
+.placeholder-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
+}

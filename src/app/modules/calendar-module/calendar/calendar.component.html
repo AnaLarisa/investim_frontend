@@ -3,7 +3,7 @@
     <mat-card-title><p class="title">Calendar</p></mat-card-title>
     <mat-card-content fxLayout="column" fxLayoutAlign="stretch stretch">
       <div class="calendar-container">
-        <full-calendar [options]="calendarOptions"></full-calendar>
+        <full-calendar *ngIf="loadedEvents" [options]="calendarOptions"></full-calendar>
       </div>
     </mat-card-content>
   </mat-card>

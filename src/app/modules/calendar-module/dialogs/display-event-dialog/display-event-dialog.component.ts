@@ -21,10 +21,15 @@ export class DisplayEventDialogComponent {
   }
 
   delete() {
-    this.dialogRef.close(true);
+    this.dialogRef.close({
+      data: this.data,
+      delete: true
+    });
   }
 
   close() {
-    this.dialogRef.close(false);
+    this.dialogRef.close({
+      delete: false
+    });
   }
 }

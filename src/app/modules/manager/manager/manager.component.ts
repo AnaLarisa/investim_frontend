@@ -36,6 +36,10 @@ export class ManagerComponent {
     this.matchingSearch = this.fullList;
   }
 
+  ngOnChanges() {
+    console.log(this.selectedNote)
+  }
+
 
 
 
@@ -58,7 +62,6 @@ export class ManagerComponent {
       window.location.href = this.matchingSearch[index].content;
     } else {
       this.selectedNote = index
-      console.log("selectedNote ", this.matchingSearch[this.selectedNote]);
     }
   }
 
@@ -67,10 +70,15 @@ export class ManagerComponent {
     this.requestsService.deleteArticlesFromManager(note.id).subscribe({
       next: (data: any) => {
         this.matchingSearch = this.matchingSearch.filter((item: any) => item.id !== note.id)
+        this.fullList = this.fullList.filter((item: any) => item.id !== note.id)
+        this.globalVarsService.setArticles(this.fullList);
       },
       error: (err: any) => {
-        if(err.status === 200)
+        if(err.status === 200) {
           this.matchingSearch = this.matchingSearch.filter((item: any) => item.id !== note.id)
+          this.fullList = this.fullList.filter((item: any) => item.id !== note.id)
+          this.globalVarsService.setArticles(this.fullList)
+        }
         else
           console.log(err);
       }

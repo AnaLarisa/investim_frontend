@@ -11,6 +11,7 @@ export class NoteEditComponent {
 
   @Input() note!: any;
   @Input() noteArray!: any;
+  @Input() selectedNote!: any;
 
   constructor(
     private globalVarsService: GlobalVarsService,
@@ -43,6 +44,7 @@ export class NoteEditComponent {
       this.requestsService.addArticlesFromManager(newArticle).subscribe({
         next: (data: any) => {
           this.noteArray.push(data);
+          this.globalVarsService.setArticles(this.noteArray);
         },
         error: (err: any) => {
           if(err.status !== 200)
@@ -54,10 +56,18 @@ export class NoteEditComponent {
         next: (data: any) => {
           this.isNew = true;
           this.title = this.content = this.observations = '';
+          this.globalVarsService.setArticles(this.noteArray);
+          this.selectedNote = null;
         },
         error: (err: any) => {
           if(err.status !== 200)
-          console.log(err);
+            console.log(err);
+          else {
+            this.isNew = true;
+            this.title = this.content = this.observations = '';
+            this.globalVarsService.setArticles(this.noteArray);
+            this.selectedNote = null;
+          }
         }
       })
     }
