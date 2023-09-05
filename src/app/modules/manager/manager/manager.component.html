@@ -14,7 +14,7 @@
       <div>
         {{note.title}}
       </div>
-      <mat-icon id="delete-icon" (click)="deleteNote($event, note)">delete</mat-icon>
+      <mat-icon *ngIf="role === 'manager'" id="delete-icon" (click)="deleteNote($event, note)">delete</mat-icon>
     </button>
   </div>
 </div>
