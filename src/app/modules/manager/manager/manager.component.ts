@@ -22,18 +22,28 @@ export class ManagerComponent {
     name: '',
   }
   role= ''
-
+  loaded = false;
   searchInput: any = '';
   fullList: any = [];
   matchingSearch: any = [];
   selectedNote: any = null;
 
   ngOnInit(): void {
-    const user = this.globalVarsService.getUser();
-    this.role = user?.isAdmin ? 'manager' : 'consultant'
-    this.manager.name = user?.managerUsername as string
-    this.fullList = this.globalVarsService.getArticles();
-    this.matchingSearch = this.fullList;
+    this.requestsService.getArticlesFromManager().subscribe({
+      next: (data: any) => {
+        this.globalVarsService.setArticles(data);  // load articles sent by the manager
+        this.loaded = true;
+        const user = this.globalVarsService.getUser();
+        this.role = user?.isAdmin ? 'manager' : 'consultant'
+        this.manager.name = user?.managerUsername as string
+        this.fullList = data;
+        this.matchingSearch = this.fullList;
+      },
+      error: (err: any) => {
+        if(err.status !== 200)
+          console.log(err);
+      }
+    })
   }
 
   ngOnChanges() {

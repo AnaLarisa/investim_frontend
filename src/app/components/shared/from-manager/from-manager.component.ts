@@ -18,6 +18,7 @@ export class FromManagerComponent {
   title = "No articles posted yet"
 
   ngOnInit(): void {
+    console.log("AYY")
     if(this.globalVarsService.getArticles().length > 0)
       this.title = this.globalVarsService.getArticles()[0].title
   }

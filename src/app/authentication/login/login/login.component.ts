@@ -37,34 +37,7 @@ export class LoginComponent implements OnInit {
       next:(data: any) => {
         this.globalVarsService.setUser(data); // load user
         this.credentialsError = false;
-        this.requestsService.getNews().subscribe({
-          next: (data: any) => {
-            this.globalVarsService.setNews(data)  // load news
-            this.requestsService.getArticlesFromManager().subscribe({
-              next: (data: any) => {
-                this.globalVarsService.setArticles(data);  // load articles sent by the manager
-                this.requestsService.getMeetings().subscribe({
-                  next: (data: any) => {
-                    this.globalVarsService.setMeetings(data);  // load meetings
-                    this.router.navigate(['/dashboard']).then();
-                  },
-                  error: (err: any) => {
-                    if(err.status !== 200)
-                    console.log(err);
-                  }
-                })
-              },
-              error: (err: any) => {
-                if(err.status !== 200)
-                console.log(err);
-              }
-            })
-          },
-          error: (err: any) => {
-            if(err.status !== 200)
-            console.log(err);
-          }
-        });
+        this.router.navigate(['/dashboard']).then();
       },
       error:(msg) => {
         this.credentialsError = true;

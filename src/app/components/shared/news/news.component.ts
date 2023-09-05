@@ -14,18 +14,18 @@ export class NewsComponent {
     private globalVarsService: GlobalVarsService,
   ) { }
 
-  newsTitle = ""
+  newsTitle = "No news to show"
   newsImageUrl = ""
 
   ngOnInit(): void {
     const news_article = (this.globalVarsService.getNews())[0];
-    this.newsTitle = news_article.title;
-    this.newsImageUrl = news_article.urlToImage;
+    if(news_article){
+      this.newsTitle = news_article.title;
+      this.newsImageUrl = news_article.urlToImage;
+    }
   }
 
   navigateToNews(): void {
     this.router.navigate(['newspaper']).then()
   }
-
-
 }
