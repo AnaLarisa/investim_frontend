@@ -46,12 +46,7 @@ export class TeamInformationComponent {
           this.consultants = this.consultants.filter((consultant: any) => consultant.username !== consultant_name);
         },
         error: (err: any) => {
-          if(err.status === 200){
-            this.consultants = this.consultants.filter((consultant: any) => consultant.username !== consultant_name);
-          } else {
-            if(err.status !== 200)
-            console.log(err);
-          }
+          this.consultants = this.consultants.filter((consultant: any) => consultant.username !== consultant_name);
         }
       })
     } else {

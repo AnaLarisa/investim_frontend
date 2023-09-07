@@ -28,22 +28,19 @@ export class ChatComponent {
 
     var user = new CometChat.User(uid);
     user.setName(name);
-    CometChat.logout().then( () => {
-        CometChat.login(uid, authKey).then(
-          (user) => {
-            this.reloadComponent();
-          },
-          (error) => {
-            CometChat.createUser(user, authKey).then(
-              user => {
-              },error => {
-                console.log("error", error);
-              }
-            )
+    CometChat.login(uid, authKey).then(
+      (user) => {
+        this.reloadComponent();
+      },
+      (error) => {
+        CometChat.createUser(user, authKey).then(
+          user => {
+          },error => {
+            console.log("error", error);
           }
-        );
+        )
       }
-    )
+    );
   }
 
   reloadComponent(){

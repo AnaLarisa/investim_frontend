@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {GlobalVarsService} from "../../../services/global-vars.service";
+import {CometChat} from "@cometchat-pro/chat";
 
 @Component({
   selector: 'app-menu',
@@ -33,6 +34,7 @@ export class MenuComponent {
     this.globalVarsService.setNews([]);
     this.globalVarsService.setOptions({});
     this.globalVarsService.setUser(null);
+    CometChat.logout().then();
     this.router.navigate(['login']).then()
   }
 }

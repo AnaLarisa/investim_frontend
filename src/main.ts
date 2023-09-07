@@ -24,3 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.error(err));
 });
+
+window.onbeforeunload = function() {
+  CometChat.logout().then();
+}
