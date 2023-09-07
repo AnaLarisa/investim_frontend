@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-from-manager',
@@ -12,15 +12,24 @@ export class FromManagerComponent {
 
   constructor(
     private router: Router,
-    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
   ) { }
 
   title = "No articles posted yet"
+  loaded = false
 
   ngOnInit(): void {
-    console.log("AYY")
-    if(this.globalVarsService.getArticles().length > 0)
-      this.title = this.globalVarsService.getArticles()[0].title
+    this.requestsService.getRandomArticleFromManager().subscribe({
+      next: (data: any) => {
+        if(data)
+          this.loaded = true;
+          this.title = data.title;
+      },
+      error: (err: any) => {
+        if(err.status !== 200)
+          console.log(err);
+      }
+    })
   }
 
   navigateToManager(): void {

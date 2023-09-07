@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {GlobalVarsService} from "../../../services/global-vars.service";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-news',
@@ -11,18 +11,28 @@ export class NewsComponent {
 
   constructor(
     private router: Router,
-    private globalVarsService: GlobalVarsService,
+    private requestsService: RequestsService,
   ) { }
 
   newsTitle = "No news to show"
   newsImageUrl = ""
 
+  loaded = false
+
   ngOnInit(): void {
-    const news_article = (this.globalVarsService.getNews())[0];
-    if(news_article){
-      this.newsTitle = news_article.title;
-      this.newsImageUrl = news_article.urlToImage;
-    }
+    this.requestsService.getRandomNews().subscribe({
+      next: (data: any) => {
+        this.loaded = true;
+        if(data){
+          this.newsTitle = data.title;
+          this.newsImageUrl = data.urlToImage;
+        }
+      },
+      error: (err: any) => {
+        if(err.status !== 200)
+          console.log(err);
+      }
+    })
   }
 
   navigateToNews(): void {

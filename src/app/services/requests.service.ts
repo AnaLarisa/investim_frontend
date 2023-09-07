@@ -156,4 +156,14 @@ export class RequestsService {
     return this.http.put(this.baseUrl + `articlesFromManager/${article_id}`, article,
       this.globalVarsService.getOptions());
   }
+
+  getRandomNews() {
+    return this.http.get(this.baseUrl + "news/business/one",
+      this.globalVarsService.getOptions());
+  }
+
+  getRandomArticleFromManager() {
+    return this.http.get(this.baseUrl + "articlesFromManager/last",
+      this.globalVarsService.getOptions());
+  }
 }
